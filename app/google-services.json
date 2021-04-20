@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "935094798616",
+    "project_id": "karma-a96b8",
+    "storage_bucket": "karma-a96b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935094798616:android:19290d9a163201dd43b66d",
+        "android_client_info": {
+          "package_name": "com.castprogramms.karma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "935094798616-alv3nhn7l25ocrcm8oa222lr5pm412kj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnFvHRbiA0DqLPAv-Zl_dXhD0OTrfgvNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "935094798616-alv3nhn7l25ocrcm8oa222lr5pm412kj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
