@@ -17,4 +17,14 @@
     <style name="Theme.KarMa.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.KarMa.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="BackgroundRecyclerView">
+        <item name="android:background">@color/light_grey</item>
+    </style>
+
+    <style name="BackgroundDayNight_normal">
+        <item name="android:background">@color/white</item>
+        <item name="tabSelectedTextColor">@color/tx_grey</item>
+        <item name="tabTextColor">#888888</item>
+    </style>
 </resources>

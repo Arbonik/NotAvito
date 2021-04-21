@@ -18,8 +18,20 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.castprogramms.karma.ui.slideshow.SlideshowFragment"
+        android:id="@+id/allServicesFragment"
+        android:name="com.castprogramms.karma.ui.allServices.AllServicesFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_all_services" >
+        <action
+            android:id="@+id/action_allServicesFragment_to_addServiceFragment"
+            app:destination="@id/addServiceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addServiceFragment"
+        android:name="com.castprogramms.karma.ui.addServices.AddServiceFragment"
+        android:label="AddServiceFragment">
+        <action
+            android:id="@+id/action_addServiceFragment_to_allServicesFragment"
+            app:destination="@id/allServicesFragment" />
+    </fragment>
 </navigation>
