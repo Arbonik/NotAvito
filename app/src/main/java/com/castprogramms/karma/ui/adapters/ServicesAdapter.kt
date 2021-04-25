@@ -63,8 +63,9 @@ class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(
                     .load(R.drawable.ic_launcher_foreground)
                     .into(binding.photo)
             }
-            itemView.setOnClickListener {
+            itemView.setOnLongClickListener {
                 showMenu(it, R.menu.card_option_menu)
+                true
             }
         }
         fun showMenu(v: View, @MenuRes menuRes: Int) {
