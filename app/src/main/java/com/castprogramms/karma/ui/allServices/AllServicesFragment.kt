@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -32,6 +33,7 @@ class AllServicesFragment : Fragment() {
                     Log.e("data", it.message.toString())
                 }
                 is Resource.Loading -> {
+
                     Log.e("data", it.message.toString())
                 }
                 is Resource.Success -> {
@@ -41,9 +43,11 @@ class AllServicesFragment : Fragment() {
                 }
             }
         })
+
         binding.addService.setOnClickListener {
             findNavController().navigate(R.id.action_allServicesFragment_to_addServiceFragment)
         }
         return view
     }
+
 }

@@ -16,4 +16,7 @@
     <string name="cost">Цена услуги</string>
     <string name="desc">Описание услуги</string>
 
+    <string name="opt_edit">Изменить</string>
+    <string name="opt_delete">Удалить</string>
+
 </resources>

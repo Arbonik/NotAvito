@@ -1,12 +1,18 @@
 package com.castprogramms.karma.ui.adapters
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.annotation.MenuRes
+import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.graphics.drawable.toIcon
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,6 +20,7 @@ import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.ItemServicesBinding
 import com.castprogramms.karma.tools.Service
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
@@ -56,6 +63,29 @@ class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(
                     .load(R.drawable.ic_launcher_foreground)
                     .into(binding.photo)
             }
+            itemView.setOnClickListener {
+                showMenu(it, R.menu.card_option_menu)
+            }
+        }
+        fun showMenu(v: View, @MenuRes menuRes: Int) {
+            val popup = PopupMenu(itemView.context, v)
+            popup.menuInflater.inflate(menuRes, popup.menu)
+//            popup.setOnMenuItemClickListener {
+//              when (it.itemId){
+//                    R.id.opt_edit -> {
+//
+//                    }
+//                    R.id.opt_delete -> {
+//
+//                    }
+//                }
+//            }
+
+            popup.setOnDismissListener {
+                // Respond to popup being dismissed.
+            }
+            // Show the popup menu.
+            popup.show()
         }
     }
 }
