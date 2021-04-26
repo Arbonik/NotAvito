@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.castprogramms.karma.MainActivity
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.FragmentLoginBinding
@@ -105,12 +106,13 @@ class LoginFragment : Fragment() {
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-
         val welcome = getString(R.string.welcome) + model.id
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
-        startActivity(Intent(requireActivity(), MainActivity::class.java))
-        requireActivity().finish()
+        if (!model.isFirstEnter) {
+            startActivity(Intent(requireActivity(), MainActivity::class.java))
+            requireActivity().finish()
+        }
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

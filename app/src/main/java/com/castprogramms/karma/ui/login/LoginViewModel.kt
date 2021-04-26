@@ -23,9 +23,17 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
         // can be launched in a separate asynchronous job
         repository.login(username, password)
         repository.userLiveData.observe(lifecycleOwner, {
-            if (it != null){
-                _loginResult.value =
-                    LoginResult(LoggedInUserView(it.providerId, it.uid))
+            if (it != null) {
+                when (it) {
+                    is Result.Auth -> {
+                        _loginResult.value =
+                            LoginResult(LoggedInUserView(it.data.providerId, it.data.uid, true))
+                    }
+                    is Result.Enter -> {
+                        _loginResult.value =
+                            LoginResult(LoggedInUserView(it.data.providerId, it.data.uid, false))
+                    }
+                }
             }
         })
 //        if (result is Result.Success) {

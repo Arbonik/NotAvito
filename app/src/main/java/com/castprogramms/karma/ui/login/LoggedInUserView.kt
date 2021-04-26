@@ -5,6 +5,7 @@ package com.castprogramms.karma.ui.login
  */
 data class LoggedInUserView(
     val displayName: String,
-    val id: String
+    val id: String,
+    val isFirstEnter: Boolean
     //... other data fields that may be accessible to the UI
 )

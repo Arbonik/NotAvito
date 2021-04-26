@@ -6,5 +6,5 @@ import com.castprogramms.karma.tools.User
 interface ManageUserDataInterface {
     fun addUser(user: User, id: String)
 
-    fun getUser(id: String): MutableLiveData<Resource<User>>
+    fun getUser(id: String): MutableLiveData<Resource<Pair<String, User>>>
 }

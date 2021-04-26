@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import androidx.navigation.findNavController
 import androidx.navigation.ui.navigateUp
+import com.castprogramms.karma.data.Result
 import com.castprogramms.karma.network.Repository
 import org.koin.android.ext.android.inject
 

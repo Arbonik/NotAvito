@@ -27,4 +27,9 @@
         <item name="tabSelectedTextColor">@color/tx_grey</item>
         <item name="tabTextColor">#888888</item>
     </style>
+
+
+    <style name="TextStyle">
+        <item name="android:textColor">@color/tx_grey</item>
+    </style>
 </resources>

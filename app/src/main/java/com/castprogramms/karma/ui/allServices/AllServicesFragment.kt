@@ -43,10 +43,6 @@ class AllServicesFragment : Fragment() {
                 }
             }
         })
-
-        binding.addService.setOnClickListener {
-            findNavController().navigate(R.id.action_allServicesFragment_to_addServiceFragment)
-        }
         return view
     }
 

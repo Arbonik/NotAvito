@@ -54,8 +54,8 @@ class AddServiceFragment: Fragment() {
                         uri.toString(), user.uid
                     )
                 )
+                findNavController().navigate(R.id.action_addServiceFragment_to_profileFragment)
             }
-            findNavController().navigate(R.id.action_addServiceFragment_to_allServicesFragment)
         }
         return view
     }

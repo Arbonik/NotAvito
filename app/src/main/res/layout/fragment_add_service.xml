@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@id/user_icon">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:hint="@string/name"
+            android:hint="@string/name_service"
             android:id="@+id/name_service"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

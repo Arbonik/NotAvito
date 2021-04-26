@@ -1,5 +1,6 @@
 package com.castprogramms.karma.network
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.castprogramms.karma.tools.User
 import com.google.firebase.firestore.FirebaseFirestore
@@ -19,14 +20,15 @@ class ManageUserDataFireStore: ManageUserDataInterface {
             .set(user)
     }
 
-    override fun getUser(id: String): MutableLiveData<Resource<User>> {
-        val mutableLiveData = MutableLiveData<Resource<User>>(null)
-        fireStore.collection(ServiceFireStore.USERS_TAG)
+    override fun getUser(id: String): MutableLiveData<Resource<Pair<String, User>>> {
+        val mutableLiveData = MutableLiveData<Resource<Pair<String,User>>>(null)
+        fireStore.collection(USERS_TAG)
             .document(id)
             .addSnapshotListener { value, error ->
                 if (value != null){
                     mutableLiveData.postValue(Resource.Loading())
-                    mutableLiveData.postValue(Resource.Success(value.toObject(User::class.java)!!))
+                    Log.e("auth", id + value.data.toString())
+                    mutableLiveData.postValue(Resource.Success(id to value.toObject(User::class.java)!!))
                 }
                 else{
                     mutableLiveData.postValue(Resource.Error(error?.message))
