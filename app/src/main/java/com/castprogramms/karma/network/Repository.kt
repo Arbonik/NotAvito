@@ -23,16 +23,17 @@ class Repository(private val serviceFireStore: ServiceFireStore,
         if (user == null){
             fireBaseAuthenticator.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
-                    if (it.result != null) {
+                    if (it.isSuccessful) {
                         userLiveData.postValue(it.result!!.user)
                     } else {
-                        Log.e("auth", it.exception?.message.toString())
+                        fireBaseAuthenticator.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                            if (it.isSuccessful){
+                                userLiveData.postValue(it.result?.user)
+                            }
+                        }
                     }
                 }
             }
-//        else{
-//            userLiveData.postValue(user)
-//        }
     }
     fun addService(service: Service) = serviceFireStore.addService(service)
     fun getAllServices() = serviceFireStore.getAllService()

@@ -43,15 +43,18 @@ class AddServiceFragment: Fragment() {
             intent.putExtra("return-data", true)
             startActivityForResult(intent, 1)
         }
+        val user = addServiceViewModel.getUser()
         binding.acceptEdit.setOnClickListener {
-            addServiceViewModel.addService(
-                Service(
-                    binding.nameService.text.toString(),
-                    binding.costService.text.toString().toInt(),
-                    binding.descService.text.toString(),
-                    uri.toString(), "id"
+            if (user != null) {
+                addServiceViewModel.addService(
+                    Service(
+                        binding.nameService.text.toString(),
+                        binding.costService.text.toString().toInt(),
+                        binding.descService.text.toString(),
+                        uri.toString(), user.uid
+                    )
                 )
-            )
+            }
             findNavController().navigate(R.id.action_addServiceFragment_to_allServicesFragment)
         }
         return view
