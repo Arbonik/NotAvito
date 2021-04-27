@@ -61,4 +61,9 @@
         <!-- For the hamburger menu, back button, etc -->
         <item name="tint">@color/fio_dark</item>
     </style>
+
+
+    <style name="TextStyle">
+        <item name="android:textColor">@color/tx_grey</item>
+    </style>
 </resources>

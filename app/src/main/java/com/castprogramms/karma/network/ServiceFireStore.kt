@@ -40,14 +40,14 @@ class ServiceFireStore: ServiceFireStoreInterface {
         return mutableLiveData
     }
 
-    override fun getUser(id: String): MutableLiveData<Resource<User>> {
-        val mutableLiveData = MutableLiveData<Resource<User>>(null)
-        fireStore.collection(USERS_TAG)
-            .document(id)
+    override fun getAllUserServices(id: String): MutableLiveData<Resource<List<Service>>> {
+        val mutableLiveData = MutableLiveData<Resource<List<Service>>>(null)
+        fireStore.collection(SERVICES_TAG)
+            .whereEqualTo("idAuthor", id)
             .addSnapshotListener { value, error ->
                 if (value != null){
                     mutableLiveData.postValue(Resource.Loading())
-                    mutableLiveData.postValue(Resource.Success(value.toObject(User::class.java)!!))
+                    mutableLiveData.postValue(Resource.Success(value.toObjects(Service::class.java)))
                 }
                 else{
                     mutableLiveData.postValue(Resource.Error(error?.message))

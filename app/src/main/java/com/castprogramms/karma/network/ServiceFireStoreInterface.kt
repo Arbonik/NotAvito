@@ -12,5 +12,5 @@ interface ServiceFireStoreInterface {
 
     fun getAllService(): MutableLiveData<Resource<List<Service>>>
 
-    fun getUser(id: String): MutableLiveData<Resource<User>>
+    fun getAllUserServices(id: String): MutableLiveData<Resource<List<Service>>>
 }

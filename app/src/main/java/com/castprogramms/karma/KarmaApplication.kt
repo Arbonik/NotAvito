@@ -1,11 +1,14 @@
 package com.castprogramms.karma
 
 import android.app.Application
+import com.castprogramms.karma.network.ManageUserDataFireStore
 import com.castprogramms.karma.network.Repository
 import com.castprogramms.karma.network.ServiceFireStore
 import com.castprogramms.karma.ui.addServices.AddServiceViewModel
 import com.castprogramms.karma.ui.allServices.ServicesViewModel
 import com.castprogramms.karma.ui.gallery.ProfileViewModel
+import com.castprogramms.karma.ui.insertdata.InsertDataViewModel
+import com.castprogramms.karma.ui.login.LoginViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.android.viewmodel.dsl.viewModel
@@ -15,10 +18,13 @@ import org.koin.dsl.module
 class KarmaApplication : Application() {
     val appModule = module{
         single { ServiceFireStore() }
-        single { Repository(get()) }
+        single { ManageUserDataFireStore() }
+        single { Repository(get(), get()) }
+        viewModel { LoginViewModel(get()) }
         viewModel { ServicesViewModel(get()) }
         viewModel { AddServiceViewModel(get()) }
         viewModel { ProfileViewModel(get()) }
+        viewModel { InsertDataViewModel(get()) }
     }
     override fun onCreate() {
         super.onCreate()

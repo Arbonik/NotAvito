@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/profileFragment">
 
     <fragment
         android:id="@+id/nav_home"
@@ -14,24 +14,24 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.castprogramms.karma.ui.gallery.ProfileFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_profile" />
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_addServiceFragment"
+            app:destination="@id/addServiceFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/allServicesFragment"
         android:name="com.castprogramms.karma.ui.allServices.AllServicesFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_all_services" >
-        <action
-            android:id="@+id/action_allServicesFragment_to_addServiceFragment"
-            app:destination="@id/addServiceFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_all_services" />
     <fragment
         android:id="@+id/addServiceFragment"
         android:name="com.castprogramms.karma.ui.addServices.AddServiceFragment"
         android:label="AddServiceFragment">
         <action
-            android:id="@+id/action_addServiceFragment_to_allServicesFragment"
-            app:destination="@id/allServicesFragment" />
+            android:id="@+id/action_addServiceFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 </navigation>

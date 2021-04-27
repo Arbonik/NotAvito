@@ -8,15 +8,31 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="profile">Профиль</string>
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="create">Создать</string>
-    <string name="name">Название услуги</string>
+    <string name="name_service">Название услуги</string>
     <string name="cost">Цена услуги</string>
     <string name="desc">Описание услуги</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 
     <string name="opt_edit">Изменить</string>
     <string name="opt_delete">Удалить</string>
-
+    <string name="save">Запомнить</string>
+    <string name="register">Регестрация</string>
+    <string name="name">Имя</string>
+    <string name="family">Фамилия</string>
+    <string name="number">Номер телефона</string>
+    <string name="enter">Войти</string>
+    <string name="password_repeat">Повторите пароль</string>
+    <string name="add_service">Добавить заявку</string>
 </resources>
