@@ -63,7 +63,7 @@ class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(
                     .load(R.drawable.ic_launcher_foreground)
                     .into(binding.photo)
             }
-            itemView.setOnLongClickListener {
+             itemView.setOnLongClickListener {
                 showMenu(it, R.menu.card_option_menu)
                 true
             }
@@ -71,21 +71,21 @@ class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(
         fun showMenu(v: View, @MenuRes menuRes: Int) {
             val popup = PopupMenu(itemView.context, v)
             popup.menuInflater.inflate(menuRes, popup.menu)
-//            popup.setOnMenuItemClickListener {
-//              when (it.itemId){
-//                    R.id.opt_edit -> {
-//
-//                    }
-//                    R.id.opt_delete -> {
-//
-//                    }
-//                }
-//            }
+            popup.setOnMenuItemClickListener {
+              when (it.itemId){
+                    R.id.opt_edit -> {
+                        true
+                    }
+                    R.id.opt_delete -> {
+                        true
+                    }
+                  else -> false
+              }
+            }
 
             popup.setOnDismissListener {
                 // Respond to popup being dismissed.
             }
-            // Show the popup menu.
             popup.show()
         }
     }
