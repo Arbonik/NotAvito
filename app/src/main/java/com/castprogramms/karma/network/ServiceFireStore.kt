@@ -1,6 +1,7 @@
 package com.castprogramms.karma.network
 
 import androidx.lifecycle.MutableLiveData
+import com.castprogramms.karma.tools.Fields
 import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.tools.User
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,8 +22,24 @@ class ServiceFireStore: ServiceFireStoreInterface {
     }
 
     override fun deleteService(service: Service) {
+        var id = ""
         fireStore.collection(SERVICES_TAG)
-//            .whereEqualTo("")
+            .whereEqualTo(Fields.SERVICES_COST.desc, service.cost)
+            .whereEqualTo(Fields.SERVICES_DATA_TIME.desc, service.dataTime)
+            .whereEqualTo(Fields.SERVICES_DESC.desc, service.desc)
+            .whereEqualTo(Fields.SERVICES_ID_AUTHOR.desc, service.idAuthor)
+            .whereEqualTo(Fields.SERVICES_NAME.desc, service.name)
+            .get().addOnCompleteListener {
+                if (it.isSuccessful){
+                    it.result?.documents?.forEach {
+                        id = it.id
+                    }
+                }
+            }.continueWith {
+                fireStore.collection(SERVICES_TAG)
+                    .document(id)
+                    .delete()
+            }
     }
 
     override fun getAllService(): MutableLiveData<Resource<List<Service>>> {

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.castprogramms.karma.data.Result
 import com.castprogramms.karma.network.Repository
 import com.castprogramms.karma.network.Resource
+import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.tools.User
 
 class ProfileViewModel(private val repository: Repository) : ViewModel() {
@@ -29,4 +30,5 @@ class ProfileViewModel(private val repository: Repository) : ViewModel() {
     }
 
     fun getAllUserServices(id: String) = repository.getAllUserServices(id)
+    fun deleteService(service: Service) = repository.deleteService(service)
 }

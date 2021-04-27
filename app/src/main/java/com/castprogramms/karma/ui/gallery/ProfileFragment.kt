@@ -17,6 +17,7 @@ import com.castprogramms.karma.databinding.BottomSheetBinding
 import com.castprogramms.karma.databinding.FragmentProfileBinding
 import com.castprogramms.karma.network.Resource
 import com.castprogramms.karma.network.ServiceFireStore
+import com.castprogramms.karma.ui.adapters.ProfileServicesAdapter
 import com.castprogramms.karma.ui.adapters.ServicesAdapter
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -32,7 +33,7 @@ class ProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         val binding = FragmentProfileBinding.bind(view)
-        val adapter = ServicesAdapter()
+        val adapter = ProfileServicesAdapter()
         binding.recycler.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recycler.adapter = adapter
         profileViewModel.getUserData().observe(viewLifecycleOwner, {
@@ -56,7 +57,11 @@ class ProfileFragment : Fragment() {
                 }
             }
         })
-
+        adapter.mutableLiveDataNeedDelete.observe(viewLifecycleOwner, {
+            it.forEach {
+                profileViewModel.deleteService(it)
+            }
+        })
         binding.addService.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_addServiceFragment)
         }

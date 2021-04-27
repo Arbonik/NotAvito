@@ -2,18 +2,24 @@ package com.castprogramms.karma.ui.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.MenuRes
+import androidx.appcompat.widget.PopupMenu
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.ItemServicesBinding
 import com.castprogramms.karma.tools.Service
+import com.castprogramms.karma.tools.time.TimeModule
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
 class ProfileServicesAdapter: RecyclerView.Adapter<ProfileServicesAdapter.ProfileServicesViewHolder>() {
     var services = mutableListOf<Service>()
+    val mutableLiveDataNeedDelete = MutableLiveData<MutableList<Service>>(mutableListOf())
     fun setService(list: List<Service>){
         services = list.toMutableList()
         notifyDataSetChanged()
@@ -42,6 +48,7 @@ class ProfileServicesAdapter: RecyclerView.Adapter<ProfileServicesAdapter.Profil
             binding.cost.text = service.cost.toString()
             binding.name.text = service.name
             binding.nameAuthor.text = service.desc
+            binding.time.text = TimeModule.getServiceTime(service.dataTime)
             try {
                 Glide.with(itemView)
                     .load(service.photo)
@@ -54,8 +61,29 @@ class ProfileServicesAdapter: RecyclerView.Adapter<ProfileServicesAdapter.Profil
             }
             binding.root.setOnLongClickListener {
                 // надо сделать всплывающее меню снизу с кнопками Редактровать и Удалить
-                return@setOnLongClickListener true
+                showMenu(it, R.menu.card_option_menu, service)
+                true
             }
+        }
+        fun showMenu(v: View, @MenuRes menuRes: Int, service: Service) {
+            val popup = PopupMenu(itemView.context, v)
+            popup.menuInflater.inflate(menuRes, popup.menu)
+            popup.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.opt_edit ->{
+
+                    }
+                    R.id.opt_delete ->{
+                        mutableLiveDataNeedDelete.postValue(mutableLiveDataNeedDelete.value?.apply { add(service) })
+                    }
+                }
+                true
+            }
+            popup.setOnDismissListener {
+                // Respond to popup being dismissed.
+            }
+            // Show the popup menu.
+            popup.show()
         }
     }
 }
