@@ -18,9 +18,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.KarMa.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.KarMa.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
 
-    <style name="Theme.KarMa.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.KarMa.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
 
     <style name="BackgroundRecyclerView">
         <item name="android:background">@color/light_grey</item>
@@ -48,7 +48,7 @@
 
     <style name="ToolbarStyle" parent="@style/Widget.AppCompat.Toolbar">
         <!-- Makes the toolbar text whatever color you want for both light/dark-->
-        <item name="titleTextColor">@color/fio_dark</item>
+        <item name="titleTextColor">@color/tx_grey</item>
         <item name="android:background">?attr/colorPrimary</item>
     </style>
 
@@ -61,7 +61,6 @@
         <!-- For the hamburger menu, back button, etc -->
         <item name="tint">@color/fio_dark</item>
     </style>
-
 
     <style name="TextStyle">
         <item name="android:textColor">@color/tx_grey</item>
