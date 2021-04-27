@@ -20,6 +20,7 @@ import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.ItemServicesBinding
 import com.castprogramms.karma.tools.Service
+import com.castprogramms.karma.tools.time.TimeModule
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import java.lang.Exception
@@ -54,6 +55,7 @@ class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(
             binding.cost.text = service.cost.toString()
             binding.name.text = service.name
             binding.nameAuthor.text = service.desc
+            binding.time.text = TimeModule.getServiceTime(service.dataTime)
             try {
                 Glide.with(itemView)
                         .load(service.photo)
@@ -63,30 +65,7 @@ class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(
                     .load(R.drawable.ic_launcher_foreground)
                     .into(binding.photo)
             }
-             itemView.setOnLongClickListener {
-                showMenu(it, R.menu.card_option_menu)
-                true
-            }
         }
-        fun showMenu(v: View, @MenuRes menuRes: Int) {
-            val popup = PopupMenu(itemView.context, v)
-            popup.menuInflater.inflate(menuRes, popup.menu)
-            popup.setOnMenuItemClickListener {
-              when (it.itemId){
-                    R.id.opt_edit -> {
-                        true
-                    }
-                    R.id.opt_delete -> {
-                        true
-                    }
-                  else -> false
-              }
-            }
 
-            popup.setOnDismissListener {
-                // Respond to popup being dismissed.
-            }
-            popup.show()
-        }
     }
 }

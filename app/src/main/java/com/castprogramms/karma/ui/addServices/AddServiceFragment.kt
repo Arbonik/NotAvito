@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.FragmentAddServiceBinding
 import com.castprogramms.karma.tools.Service
+import com.castprogramms.karma.tools.time.TimeModule
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.storage.FirebaseStorage
 import org.koin.android.ext.android.bind
@@ -51,7 +52,7 @@ class AddServiceFragment: Fragment() {
                         binding.nameService.text.toString(),
                         binding.costService.text.toString().toInt(),
                         binding.descService.text.toString(),
-                        uri.toString(), user.uid
+                        uri.toString(), user.uid, TimeModule.now()
                     )
                 )
                 findNavController().navigate(R.id.action_addServiceFragment_to_profileFragment)
