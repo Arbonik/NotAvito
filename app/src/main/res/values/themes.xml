@@ -29,7 +29,7 @@
     <style name="TextNormalTitle">
         <item name="android:textColor">@color/tx_grey</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">54sp</item>
         <item name="android:letterSpacing">0.01</item>
     </style>
 

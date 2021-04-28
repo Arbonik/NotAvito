@@ -5,72 +5,102 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/fragment_horizontal_margin"
-    android:paddingTop="@dimen/fragment_vertical_margin"
-    android:paddingRight="@dimen/fragment_horizontal_margin"
-    android:paddingBottom="@dimen/fragment_vertical_margin"
     tools:context=".ui.login.LoginFragment">
+
+    <TextView
+        android:elevation="100dp"
+        android:id="@+id/title_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="0sp"
+        android:text="@string/sign_in"
+        android:textColor="@color/white"
+        android:textAppearance="@style/TextNormalTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_container"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="96dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginTop="120dp"
+        android:elevation="100dp"
+        android:hint="@string/prompt_email"
         android:selectAllOnFocus="true"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textColorHint="@color/black_purple"
+        app:boxStrokeColor="@color/fio_norm"
+        app:boxStrokeErrorColor="@color/purple_100"
+        app:counterTextColor="@color/fio_norm"
+        app:errorTextColor="@color/purple_100"
+        app:hintTextColor="@color/fio_norm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:helperTextTextColor="@color/purple_200"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="@string/prompt_email">
+        app:layout_constraintTop_toBottomOf="@+id/title_signin"
+        app:startIconContentDescription="@string/prompt_email"
+        app:startIconDrawable="@drawable/person_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/username"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/password_container"
+        android:elevation="100dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:helperTextTextColor="@color/purple_200"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
-
         android:selectAllOnFocus="true"
+        android:textColorHint="@color/black_purple"
+        app:boxStrokeColor="@color/fio_norm"
+        app:boxStrokeErrorColor="@color/fio_norm"
+        app:counterOverflowTextColor="@color/fio_norm"
+        app:counterTextColor="@color/fio_norm"
+        app:endIconMode="password_toggle"
+        app:errorEnabled="true"
+        app:errorIconTint="@color/purple_100"
+        app:errorTextColor="@color/purple_100"
+        app:hintTextColor="@color/fio_norm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_container">
+        app:layout_constraintTop_toBottomOf="@+id/username_container"
+        app:startIconContentDescription="@string/prompt_password"
+        app:startIconDrawable="@drawable/vpn_key_24">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:id="@+id/password"
-            />
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="64dp"
+        android:elevation="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="@color/green_normal"
         android:enabled="false"
-        android:text="@string/action_sign_in"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/enter"
+        android:textColor="@color/fio_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_container"
@@ -78,6 +108,7 @@
 
     <ProgressBar
         android:id="@+id/loading"
+        android:elevation="200dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -91,4 +122,61 @@
         app:layout_constraintStart_toStartOf="@+id/password_container"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/small_oval"
+            android:layout_width="210dp"
+            android:layout_height="210dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-42dp"
+            android:layout_marginBottom="-66dp"
+            android:background="@drawable/small_oval" />
+
+        <ImageView
+            android:id="@+id/big_ovvval"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="-69dp"
+            android:layout_marginTop="-195dp"
+            android:background="@drawable/big_oval"
+            android:elevation="2dp" />
+
+        <ImageView
+            android:id="@+id/small_oval_top"
+            android:layout_width="210dp"
+            android:layout_height="210dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="-49dp"
+            android:layout_marginRight="-62dp"
+            android:background="@drawable/small_oval" />
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

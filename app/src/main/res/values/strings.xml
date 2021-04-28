@@ -16,7 +16,7 @@
     <string name="cost">Цена услуги</string>
     <string name="desc">Описание услуги</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
+    <string name="prompt_email">Почта</string>
     <string name="prompt_password">Пароль</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -33,6 +33,7 @@
     <string name="family">Фамилия</string>
     <string name="number">Номер телефона</string>
     <string name="enter">Войти</string>
+    <string name="sign_in">Вход</string>
     <string name="password_repeat">Повторите пароль</string>
     <string name="add_service">Добавить заявку</string>
     <string name="image_card">Добавить заявку</string>
