@@ -1,5 +1,6 @@
 package com.castprogramms.karma.ui.adapters
 
+import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -10,6 +11,10 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.ItemServicesBinding
 import com.castprogramms.karma.tools.Service
@@ -17,7 +22,7 @@ import com.castprogramms.karma.tools.time.TimeModule
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
-class ProfileServicesAdapter: RecyclerView.Adapter<ProfileServicesAdapter.ProfileServicesViewHolder>() {
+class ProfileServicesAdapter(val deleteService:(service: Service) -> Unit): RecyclerView.Adapter<ProfileServicesAdapter.ProfileServicesViewHolder>() {
     var services = mutableListOf<Service>()
     val mutableLiveDataNeedDelete = MutableLiveData<MutableList<Service>>(mutableListOf())
     fun setService(list: List<Service>){
@@ -28,6 +33,7 @@ class ProfileServicesAdapter: RecyclerView.Adapter<ProfileServicesAdapter.Profil
     fun addService(service: Service){
         services.add(service)
         notifyDataSetChanged()
+
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileServicesViewHolder {
         return ProfileServicesViewHolder(
@@ -50,9 +56,35 @@ class ProfileServicesAdapter: RecyclerView.Adapter<ProfileServicesAdapter.Profil
             binding.nameAuthor.text = service.desc
             binding.time.text = TimeModule.getServiceTime(service.dataTime)
             try {
-                Glide.with(itemView)
-                    .load(service.photo)
-                    .into(binding.photo)
+                if (service.photo != "")
+                    Glide.with(itemView)
+                        .load(service.photo).fitCenter()
+                        .addListener(object : RequestListener<Drawable> {
+                            override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                isFirstResource: Boolean,
+                            ): Boolean {
+                                binding.progressBar2.visibility = View.GONE
+                                return true
+                            }
+
+                            override fun onResourceReady(
+                                resource: Drawable?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                dataSource: DataSource?,
+                                isFirstResource: Boolean,
+                            ): Boolean {
+                                binding.photo.setImageDrawable(resource)
+                                binding.progressBar2.visibility = View.GONE
+                                return true
+                            }
+                        })
+                        .into(binding.photo)
+                else
+                    binding.progressBar2.visibility = View.GONE
             }catch (e: Exception){
                 Log.e("data", e.message.toString())
                 Picasso.get()
@@ -74,7 +106,8 @@ class ProfileServicesAdapter: RecyclerView.Adapter<ProfileServicesAdapter.Profil
 
                     }
                     R.id.opt_delete ->{
-                        mutableLiveDataNeedDelete.postValue(mutableLiveDataNeedDelete.value?.apply { add(service) })
+                        deleteService(service)
+//                        mutableLiveDataNeedDelete.postValue(mutableLiveDataNeedDelete.value?.apply { add(service) })
                     }
                 }
                 true

@@ -20,12 +20,43 @@ class InsertDataFragment: Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_insert_data, container, false)
         val binding = FragmentInsertDataBinding.bind(view)
+        val listCheck = mutableListOf<Boolean>()
         binding.registration.setOnClickListener {
-            insertDataViewModel.addUser(User(
-                binding.name.text.toString(),
-                binding.family.text.toString(),
-                binding.number.text.toString()
-            ), binding.email.text.toString(), binding.password.toString())
+            if (binding.name.text.isNullOrBlank()) {
+                binding.nameContainer.helperText = "Введите имя"
+                listCheck.add(false)
+            }
+            if (binding.family.text.isNullOrBlank()) {
+                binding.familyContainer.helperText = "Введите фамилию"
+                listCheck.add(false)
+            }
+
+            if (binding.number.text.isNullOrBlank()) {
+                binding.numberContainer.helperText = "Введите номер телефона"
+                listCheck.add(false)
+            }
+
+            if (binding.email.text.isNullOrBlank()) {
+                binding.emailContainer.helperText = "Введите электронную почту"
+                listCheck.add(false)
+            }
+
+            if (binding.password.text.isNullOrBlank()) {
+                binding.passwordContainer.helperText = "Введите пароль"
+                listCheck.add(false)
+            }
+
+            if (binding.passwordRepeat.text.isNullOrBlank()) {
+                binding.passwordRepeatContainer.helperText = "Введите пароль"
+                listCheck.add(false)
+            }
+            if (!listCheck.contains(false)) {
+                insertDataViewModel.addUser(User(
+                    binding.name.text.toString(),
+                    binding.family.text.toString(),
+                    binding.number.text.toString()
+                ), binding.email.text.toString(), binding.password.toString())
+            }
         }
         return view
     }

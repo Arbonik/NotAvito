@@ -25,7 +25,6 @@ class ServiceFireStore: ServiceFireStoreInterface {
         var id = ""
         fireStore.collection(SERVICES_TAG)
             .whereEqualTo(Fields.SERVICES_COST.desc, service.cost)
-            .whereEqualTo(Fields.SERVICES_DATA_TIME.desc, service.dataTime)
             .whereEqualTo(Fields.SERVICES_DESC.desc, service.desc)
             .whereEqualTo(Fields.SERVICES_ID_AUTHOR.desc, service.idAuthor)
             .whereEqualTo(Fields.SERVICES_NAME.desc, service.name)
@@ -42,13 +41,18 @@ class ServiceFireStore: ServiceFireStoreInterface {
             }
     }
 
-    override fun getAllService(): MutableLiveData<Resource<List<Service>>> {
-        val mutableLiveData = MutableLiveData<Resource<List<Service>>>(null)
+    override fun getAllService(): MutableLiveData<Resource<List<Pair<String, Service>>>> {
+        val mutableLiveData = MutableLiveData<Resource<List<Pair<String,Service>>>>(null)
+        val mutableList = mutableListOf<Pair<String, Service>>()
         fireStore.collection(SERVICES_TAG)
             .addSnapshotListener { value, error ->
                 if (value != null){
+                    mutableList.clear()
                     mutableLiveData.postValue(Resource.Loading())
-                    mutableLiveData.postValue(Resource.Success(value.toObjects(Service::class.java)))
+                    value.documents.forEach {
+                        mutableList.add(it.id to it.toObject(Service::class.java)!!)
+                    }
+                    mutableLiveData.postValue(Resource.Success(mutableList))
                 }
                 else{
                     mutableLiveData.postValue(Resource.Error(error?.message))

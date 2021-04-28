@@ -25,7 +25,11 @@
         android:id="@+id/allServicesFragment"
         android:name="com.castprogramms.karma.ui.allServices.AllServicesFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_all_services" />
+        tools:layout="@layout/fragment_all_services" >
+        <action
+            android:id="@+id/action_allServicesFragment_to_serviceFragment"
+            app:destination="@id/serviceFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addServiceFragment"
         android:name="com.castprogramms.karma.ui.addServices.AddServiceFragment"
@@ -34,4 +38,8 @@
             android:id="@+id/action_addServiceFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/serviceFragment"
+        android:name="com.castprogramms.karma.ui.ServiceFragment"
+        android:label="ServiceFragment" />
 </navigation>

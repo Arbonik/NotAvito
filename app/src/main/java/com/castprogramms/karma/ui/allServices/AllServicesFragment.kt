@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.FragmentAllServicesBinding
 import com.castprogramms.karma.network.Resource
+import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.ui.adapters.ServicesAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -27,7 +29,7 @@ class AllServicesFragment : Fragment() {
         val adapter = ServicesAdapter()
         binding.recycler.adapter = adapter
         binding.recycler.layoutManager = GridLayoutManager(requireContext(), 2)
-        servicesViewModel.getAllServices().observe(viewLifecycleOwner, {
+        servicesViewModel.getAllServices().observe(viewLifecycleOwner) {
             when(it){
                 is Resource.Error -> {
                     Log.e("data", it.message.toString())
@@ -38,12 +40,22 @@ class AllServicesFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     if (it.data != null) {
-                        adapter.setService(it.data)
+                        adapter.setService(getListServices(it.data))
+
                     }
                 }
             }
-        })
+        }
         return view
     }
 
+    fun getListServices(list: List<Pair<String, Service>>): Pair<MutableList<Service>, MutableList<String>> {
+        val mutableList = mutableListOf<Service>()
+        val ids = mutableListOf<String>()
+        list.forEach {
+            mutableList.add(it.second)
+            ids.add(it.first)
+        }
+        return mutableList to ids
+    }
 }

@@ -1,25 +1,18 @@
 package com.castprogramms.karma.ui.gallery
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.castprogramms.karma.R
-import com.castprogramms.karma.data.Result
-import com.castprogramms.karma.databinding.BottomSheetBinding
 import com.castprogramms.karma.databinding.FragmentProfileBinding
 import com.castprogramms.karma.network.Resource
-import com.castprogramms.karma.network.ServiceFireStore
 import com.castprogramms.karma.ui.adapters.ProfileServicesAdapter
-import com.castprogramms.karma.ui.adapters.ServicesAdapter
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
@@ -33,10 +26,10 @@ class ProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         val binding = FragmentProfileBinding.bind(view)
-        val adapter = ProfileServicesAdapter()
+        val adapter = ProfileServicesAdapter { profileViewModel.deleteService(it) }
         binding.recycler.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recycler.adapter = adapter
-        profileViewModel.getUserData().observe(viewLifecycleOwner, {
+        profileViewModel.getUserData().observe(viewLifecycleOwner, Observer{
             when(it){
                 is Resource.Error -> {
 
@@ -45,7 +38,7 @@ class ProfileFragment : Fragment() {
 
                 }
                 is Resource.Success -> {
-                    profileViewModel.getAllUserServices(it.data?.first!!).observe(viewLifecycleOwner,{
+                    profileViewModel.getAllUserServices(it.data?.first!!).observe(viewLifecycleOwner) {
                         when(it){
                             is Resource.Error -> {}
                             is Resource.Loading -> {}
@@ -53,13 +46,8 @@ class ProfileFragment : Fragment() {
                                 adapter.setService(it.data!!)
                             }
                         }
-                    })
+                    }
                 }
-            }
-        })
-        adapter.mutableLiveDataNeedDelete.observe(viewLifecycleOwner, {
-            it.forEach {
-                profileViewModel.deleteService(it)
             }
         })
         binding.addService.setOnClickListener {
