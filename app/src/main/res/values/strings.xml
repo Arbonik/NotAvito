@@ -35,4 +35,5 @@
     <string name="enter">Войти</string>
     <string name="password_repeat">Повторите пароль</string>
     <string name="add_service">Добавить заявку</string>
+    <string name="image_card">Добавить заявку</string>
 </resources>
