@@ -109,10 +109,10 @@ class LoginFragment : Fragment() {
         val welcome = getString(R.string.welcome) + model.id
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
-        if (!model.isFirstEnter) {
+//        if (!model.isFirstEnter) {
             startActivity(Intent(requireActivity(), MainActivity::class.java))
             requireActivity().finish()
-        }
+//        }
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
