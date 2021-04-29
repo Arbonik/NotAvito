@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.navigation.ui.navigateUp
 import com.castprogramms.karma.data.Result
@@ -16,12 +17,12 @@ class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registr)
-        repository.userLiveData.observe(this, {
+        repository.userLiveData.observe(this) {
             if (it != null ){
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
+//                startActivity(Intent(this, MainActivity::class.java))
+//                finish()
             }
-        })
+        }
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

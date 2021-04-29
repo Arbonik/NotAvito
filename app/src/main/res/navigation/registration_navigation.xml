@@ -13,15 +13,22 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.castprogramms.karma.ui.splash.SplashFragment"
+        tools:layout="@layout/splash_fragment"
         android:label="SplashFragment" >
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"
+            />
         <action
             android:id="@+id/action_splashFragment_to_insertDataFragment"
             app:destination="@id/insertDataFragment" />
     </fragment>
     <fragment
+        tools:layout="@layout/fragment_insert_data"
         android:id="@+id/insertDataFragment"
         android:name="com.castprogramms.karma.ui.insertdata.InsertDataFragment"
         android:label="InsertDataFragment" />
