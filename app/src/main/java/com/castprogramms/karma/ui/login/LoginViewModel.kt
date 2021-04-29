@@ -1,10 +1,7 @@
 package com.castprogramms.karma.ui.login
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import android.util.Patterns
-import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.*
 import com.castprogramms.karma.data.LoginRepository
 import com.castprogramms.karma.data.Result
 
@@ -22,7 +19,7 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
     fun login(username: String, password: String, lifecycleOwner: LifecycleOwner) {
         // can be launched in a separate asynchronous job
         repository.login(username, password)
-        repository.userLiveData.observe(lifecycleOwner, {
+        repository.userLiveData.observe(lifecycleOwner) {
             if (it != null) {
                 when (it) {
                     is Result.Auth -> {
@@ -35,7 +32,7 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
                     }
                 }
             }
-        })
+        }
 //        if (result is Result.Success) {
 //            _loginResult.value =
 //                LoginResult(success = LoggedInUserView(result.data.displayName, result.data.userId))

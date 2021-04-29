@@ -17,6 +17,7 @@ class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registr)
+        supportActionBar?.hide()
         repository.userLiveData.observe(this) {
             if (it != null ){
 //                startActivity(Intent(this, MainActivity::class.java))
