@@ -8,17 +8,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.FragmentAddServiceBinding
 import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.tools.time.TimeModule
-import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.storage.FirebaseStorage
-import org.koin.android.ext.android.bind
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class AddServiceFragment: Fragment() {
@@ -27,6 +27,8 @@ class AddServiceFragment: Fragment() {
     lateinit var userIcon: ImageView
     var uri : Uri = Uri.parse("")
     private val addServiceViewModel : AddServiceViewModel by viewModel()
+
+    val unit: Array<String> = arrayOf("Услуга", "День", "Час")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,6 +60,14 @@ class AddServiceFragment: Fragment() {
                 findNavController().navigate(R.id.action_addServiceFragment_to_profileFragment)
             }
         }
+        val adapterDrop = ArrayAdapter(requireContext(), R.layout.dropdown_item /*android.R.layout.simple_dropdown_item_1line*/, unit)
+        binding.unitService.setAdapter(adapterDrop)
+        binding.unitService.onItemClickListener = AdapterView.OnItemClickListener { parent, _,
+                                                                                    position, id ->
+            val selectedItem = parent.getItemAtPosition(position).toString()
+            Toast.makeText(requireContext(), "Selected: $selectedItem", Toast.LENGTH_SHORT).show()
+        }
+
         return view
     }
 

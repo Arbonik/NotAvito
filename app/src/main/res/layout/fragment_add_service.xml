@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/user_icon">
@@ -34,6 +35,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:hint="@string/name_service"
             android:id="@+id/name_service"
+            android:singleLine="true"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -51,6 +54,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/desc_service"
             android:hint="@string/desc"
+            android:maxHeight="280dp"
+            android:inputType="textMultiLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -60,21 +65,25 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:maxHeight="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/desc_service_container">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/cost_service_container"
-            android:layout_weight="4"
+            android:layout_weight="5"
+            android:layout_marginEnd="0dp"
             android:layout_gravity="center_vertical"
             style="@style/FioMaterialEditText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_height="60dp"
             app:endIconMode="custom">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/cost_service"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/cost" />
@@ -83,10 +92,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/unit_service_container"
-            android:layout_weight="3"
+            android:layout_weight="5"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             app:endIconMode="dropdown_menu"
+            android:inputType="text"
+            android:singleLine="true"
             android:layout_marginEnd="24dp"
             android:layout_gravity="center_vertical"
             android:hint="@string/unit_hint"
@@ -95,6 +106,7 @@
             <AutoCompleteTextView
                 android:background="@null"
                 android:id="@+id/unit_service"
+                android:dropDownHeight="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout_editor_absoluteX="19dp"
@@ -107,10 +119,11 @@
         style="@style/GreenMaterialButtonFill"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/fio_norm"
         android:text="@string/create"
         android:textColor="@color/white"
-        android:layout_marginBottom="20dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
