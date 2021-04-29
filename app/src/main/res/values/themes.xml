@@ -27,6 +27,7 @@
     </style>
 
     <style name="TextNormalTitle">
+        <item name="android:elevation">100dp</item>
         <item name="android:textColor">@color/tx_grey</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">54sp</item>
@@ -34,6 +35,7 @@
     </style>
 
     <style name="TextNormalBody">
+        <item name="android:elevation">102dp</item>
         <item name="android:textColor">@color/tx_grey</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
@@ -45,6 +47,52 @@
         <item name="tabSelectedTextColor">@color/tx_grey</item>
         <item name="tabTextColor">#888888</item>
     </style>
+
+    <style name="FioMaterialEditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:elevation">100dp</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:textColorHint">@color/black_purple</item>
+        <item name="boxStrokeColor">@color/fio_norm</item>
+        <item name="boxStrokeErrorColor">@color/purple_100</item>
+        <item name="counterTextColor">@color/fio_norm</item>
+        <item name="errorTextColor">@color/purple_100</item>
+        <item name="hintTextColor">@color/fio_norm</item>
+    </style>
+
+    <style name="GreenMaterialButtonFill">
+        <item name="android:elevation">100dp</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:backgroundTint">@color/green_normal</item>
+        <item name="android:textColor">@color/fio_dark</item>
+    </style>
+
+    <style name="NavBarHeaderBack">
+        <item name="android:background">@color/green_normal</item>
+        <item name="android:iconTint" tools:targetApi="o">@color/tx_grey</item>
+        <item name="android:textColor">@color/tx_grey</item>
+        <item name="itemIconTint">@color/list_selector_day</item>
+        <item name="itemTextColor">@color/list_selector_day</item>
+       <!-- <item name="android:activatedBackgroundIndicator">@color/list_selector_day</item>-->
+    </style>
+
+    <style name="GreenMaterialButtonOutline" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:backgroundTint">@color/green_light</item>
+    </style>
+
+    <style name="MyButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="shapeAppearanceOverlay">@style/MyShapeAppearance</item>
+    </style>
+    <style name="MyShapeAppearance" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyTopRight">cut</item>
+        <item name="cornerFamilyBottomRight">cut</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+
 
     <style name="ToolbarStyle" parent="@style/Widget.AppCompat.Toolbar">
         <!-- Makes the toolbar text whatever color you want for both light/dark-->

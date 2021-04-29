@@ -8,10 +8,10 @@
     tools:context=".ui.login.LoginFragment">
 
     <TextView
-        android:elevation="100dp"
         android:id="@+id/title_signin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="100dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
@@ -26,21 +26,14 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_container"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/FioMaterialEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginTop="120dp"
-        android:elevation="100dp"
         android:hint="@string/prompt_email"
         android:selectAllOnFocus="true"
-        android:textColorHint="@color/black_purple"
-        app:boxStrokeColor="@color/fio_norm"
-        app:boxStrokeErrorColor="@color/purple_100"
-        app:counterTextColor="@color/fio_norm"
-        app:errorTextColor="@color/purple_100"
-        app:hintTextColor="@color/fio_norm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_signin"
@@ -55,8 +48,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_container"
-        android:elevation="100dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/FioMaterialEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -65,21 +57,13 @@
         android:hint="@string/prompt_password"
         android:imeActionLabel="@string/action_sign_in_short"
         android:selectAllOnFocus="true"
-        android:textColorHint="@color/black_purple"
-        app:boxStrokeColor="@color/fio_norm"
-        app:boxStrokeErrorColor="@color/fio_norm"
-        app:counterOverflowTextColor="@color/fio_norm"
-        app:counterTextColor="@color/fio_norm"
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
-        app:errorIconTint="@color/purple_100"
-        app:errorTextColor="@color/purple_100"
-        app:hintTextColor="@color/fio_norm"
+        app:startIconContentDescription="@string/prompt_password"
+        app:startIconDrawable="@drawable/vpn_key_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_container"
-        app:startIconContentDescription="@string/prompt_password"
-        app:startIconDrawable="@drawable/vpn_key_24">
+        app:layout_constraintTop_toBottomOf="@+id/username_container">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
@@ -91,16 +75,12 @@
 
     <Button
         android:id="@+id/login"
-        android:elevation="100dp"
+        style="@style/GreenMaterialButtonFill"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
-        android:backgroundTint="@color/green_normal"
         android:enabled="false"
         android:text="@string/enter"
-        android:textColor="@color/fio_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_container"

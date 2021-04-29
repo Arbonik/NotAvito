@@ -8,14 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.SplashFragmentBinding
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 
 class SplashFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         val view = inflater.inflate(R.layout.splash_fragment, container, false)
         val binding = SplashFragmentBinding.bind(view)
@@ -31,4 +29,5 @@ class SplashFragment: Fragment() {
         }
         return view
     }
+
 }

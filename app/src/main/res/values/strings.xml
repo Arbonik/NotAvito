@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">KarMa</string>
+    <string name="app_norm_name">Karma</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -28,7 +29,8 @@
     <string name="opt_edit">Изменить</string>
     <string name="opt_delete">Удалить</string>
     <string name="save">Запомнить</string>
-    <string name="register">Регестрация</string>
+    <string name="register">Регистрация</string>
+    <string name="regist_done" translatable="false">Зарегистрироваться</string>
     <string name="name">Имя</string>
     <string name="family">Фамилия</string>
     <string name="number">Номер телефона</string>
