@@ -5,20 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.gallery.ProfileFragment">
+
     <androidx.recyclerview.widget.RecyclerView
-        style="@style/BackgroundRecyclerView"
-        tools:listitem="@layout/item_services"
         android:id="@+id/recycler"
+        style="@style/BackgroundRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_services" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_service"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/add_service"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="25dp"
+        android:src="@drawable/add_24"
         android:contentDescription="@string/add_service"
-        android:layout_margin="25dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

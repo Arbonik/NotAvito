@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/addServiceFragment"
         android:name="com.castprogramms.karma.ui.addServices.AddServiceFragment"
-        android:label="AddServiceFragment">
+        android:label="@string/new_service">
         <action
             android:id="@+id/action_addServiceFragment_to_profileFragment"
             app:destination="@id/profileFragment" />

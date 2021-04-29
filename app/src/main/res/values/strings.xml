@@ -27,6 +27,7 @@
     <string name="login_failed">"Login failed"</string>
 
     <string name="opt_edit">Изменить</string>
+    <string name="unit_hint">Срок</string>
     <string name="opt_delete">Удалить</string>
     <string name="save">Запомнить</string>
     <string name="register">Регистрация</string>
@@ -38,5 +39,6 @@
     <string name="sign_in">Вход</string>
     <string name="password_repeat">Повторите пароль</string>
     <string name="add_service">Добавить заявку</string>
+    <string name="new_service">Новая услуга</string>
     <string name="image_card">Добавить заявку</string>
 </resources>
