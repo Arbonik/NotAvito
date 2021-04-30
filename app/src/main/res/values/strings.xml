@@ -40,5 +40,8 @@
     <string name="password_repeat">Повторите пароль</string>
     <string name="add_service">Добавить заявку</string>
     <string name="new_service">Новая услуга</string>
+    <string name="all_service">Все услуги</string>
+    <string name="services">Услуги</string>
+    <string name="service">Услуга</string>
     <string name="image_card">Добавить заявку</string>
 </resources>
