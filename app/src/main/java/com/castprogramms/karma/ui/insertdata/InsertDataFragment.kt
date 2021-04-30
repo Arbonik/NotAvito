@@ -1,11 +1,13 @@
 package com.castprogramms.karma.ui.insertdata
 
+import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.castprogramms.karma.MainActivity
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.FragmentInsertDataBinding
 import com.castprogramms.karma.tools.User
@@ -56,6 +58,8 @@ class InsertDataFragment: Fragment() {
                     binding.family.text.toString(),
                     binding.number.text.toString()
                 ), binding.email.text.toString(), binding.password.toString())
+                startActivity(Intent(requireActivity(), MainActivity::class.java))
+                requireActivity().finish()
             }
         }
         return view
