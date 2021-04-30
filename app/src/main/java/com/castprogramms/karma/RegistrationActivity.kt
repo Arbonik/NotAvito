@@ -19,16 +19,16 @@ class RegistrationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_registr)
         supportActionBar?.hide()
         repository.userLiveData.observe(this) {
-            if (it != null ){
-//                startActivity(Intent(this, MainActivity::class.java))
-//                finish()
+            if (it != null){
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }
         }
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
-        if (hasFocus) hideSystemUI()
+//        if (hasFocus) hideSystemUI()
     }
 
     private fun hideSystemUI() {

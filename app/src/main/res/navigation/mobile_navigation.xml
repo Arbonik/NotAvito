@@ -17,6 +17,10 @@
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" >
         <action
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"
             android:id="@+id/action_profileFragment_to_addServiceFragment"
             app:destination="@id/addServiceFragment" />
     </fragment>
@@ -27,6 +31,10 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_all_services" >
         <action
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"
             android:id="@+id/action_allServicesFragment_to_serviceFragment"
             app:destination="@id/serviceFragment" />
     </fragment>
@@ -35,6 +43,10 @@
         android:name="com.castprogramms.karma.ui.addServices.AddServiceFragment"
         android:label="@string/new_service">
         <action
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"
             android:id="@+id/action_addServiceFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
