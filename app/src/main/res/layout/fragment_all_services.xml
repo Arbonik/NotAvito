@@ -8,6 +8,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         style="@style/BackgroundRecyclerView"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         tools:listitem="@layout/item_services"
         android:id="@+id/recycler"
         android:layout_width="match_parent"

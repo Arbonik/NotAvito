@@ -24,11 +24,10 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class AddServiceFragment: Fragment() {
     val storage = FirebaseStorage.getInstance("gs://karma-a96b8.appspot.com/")
     val ref = storage.reference
+    val unit: Array<String> = arrayOf("Услуга", "День", "Час")
     lateinit var userIcon: ImageView
     var uri : Uri = Uri.parse("")
     private val addServiceViewModel : AddServiceViewModel by viewModel()
-
-    val unit: Array<String> = arrayOf("Услуга", "День", "Час")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,7 +64,7 @@ class AddServiceFragment: Fragment() {
         binding.unitService.onItemClickListener = AdapterView.OnItemClickListener { parent, _,
                                                                                     position, id ->
             val selectedItem = parent.getItemAtPosition(position).toString()
-            Toast.makeText(requireContext(), "Selected: $selectedItem", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(requireContext(), "Selected: $selectedItem", Toast.LENGTH_SHORT).show()
         }
 
         return view
