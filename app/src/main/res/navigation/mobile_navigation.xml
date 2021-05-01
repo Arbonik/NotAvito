@@ -46,6 +46,6 @@
     </fragment>
     <fragment
         android:id="@+id/serviceFragment"
-        android:name="com.castprogramms.karma.ui.ServiceFragment"
+        android:name="com.castprogramms.karma.ui.service.ServiceFragment"
         android:label="@string/service" />
 </navigation>

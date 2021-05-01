@@ -10,6 +10,8 @@ interface ServiceFireStoreInterface {
 
     fun deleteService(service: Service)
 
+    fun getService(id: String): MutableLiveData<Resource<Service>>
+
     fun getAllService(): MutableLiveData<Resource<List<Pair<String,Service>>>>
 
     fun getAllUserServices(id: String): MutableLiveData<Resource<List<Service>>>

@@ -64,4 +64,5 @@ class Repository(private val serviceFireStore: ServiceFireStore,
     fun getAllUserServices(id: String) = serviceFireStore.getAllUserServices(id)
     fun getUser(id: String) = manageUserDataFireStore.getUser(id)
     fun deleteService(service: Service) = serviceFireStore.deleteService(service)
+    fun getService(id: String) = serviceFireStore.getService(id)
 }
