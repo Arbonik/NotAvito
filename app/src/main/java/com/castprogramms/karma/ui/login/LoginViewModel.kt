@@ -16,28 +16,12 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun login(username: String, password: String, lifecycleOwner: LifecycleOwner) {
+    val user = repository.userLiveData
+
+    fun login(username: String, password: String) {
         // can be launched in a separate asynchronous job
         repository.login(username, password)
-        repository.userLiveData.observe(lifecycleOwner) {
-            if (it != null) {
-                when (it) {
-                    is Result.Auth -> {
-                        _loginResult.value =
-                            LoginResult(LoggedInUserView(it.data?.providerId!!, it.data.uid, true))
-                    }
-                    is Result.Enter -> {
-                        _loginResult.value =
-                            LoginResult(LoggedInUserView(it.data?.providerId!!, it.data.uid, false))
-                    }
-                    is Result.Fail -> {
-                        _loginResult.postValue(
-                            LoginResult(error = it.message)
-                        )
-                    }
-                }
-            }
-        }
+
 //        if (result is Result.Success) {
 //            _loginResult.value =
 //                LoginResult(success = LoggedInUserView(result.data.displayName, result.data.userId))

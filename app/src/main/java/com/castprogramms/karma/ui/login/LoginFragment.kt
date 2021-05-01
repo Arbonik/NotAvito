@@ -14,9 +14,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.castprogramms.karma.MainActivity
 import com.castprogramms.karma.R
+import com.castprogramms.karma.data.Result
 import com.castprogramms.karma.databinding.FragmentLoginBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -44,17 +46,17 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 }
             })
 
-        loginViewModel.loginResult.observe(viewLifecycleOwner,
-            Observer { loginResult ->
-                loginResult ?: return@Observer
-                binding.loading.visibility = View.GONE
-                loginResult.error?.let {
-                    showLoginFailed(it)
-                }
-                loginResult.success?.let {
-                    updateUiWithUser(it)
-                }
-            })
+//        loginViewModel.loginResult.observe(viewLifecycleOwner,
+//            Observer { loginResult ->
+//                loginResult ?: return@Observer
+//                binding.loading.visibility = View.GONE
+//                loginResult.error?.let {
+//                    showLoginFailed(it)
+//                }
+//                loginResult.success?.let {
+//                    updateUiWithUser(it)
+//                }
+//            })
 
         val afterTextChangedListener = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -74,24 +76,34 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
         binding.username.addTextChangedListener(afterTextChangedListener)
         binding.password.addTextChangedListener(afterTextChangedListener)
-        binding.password.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                loginViewModel.login(
-                    binding.username.text.toString(),
-                    binding.password.text.toString(),
-                    viewLifecycleOwner
-                )
-            }
-            false
-        }
 
         binding.login.setOnClickListener {
-            binding.loading.visibility = View.VISIBLE
             loginViewModel.login(
                 binding.username.text.toString(),
-                binding.password.text.toString(),
-                viewLifecycleOwner
+                binding.password.text.toString()
             )
+        }
+
+        loginViewModel.user.observe(viewLifecycleOwner) {
+            if (it != null) {
+                when (it) {
+                    is Result.Loading ->{
+                        binding.loading.visibility = View.VISIBLE
+                    }
+                    is Result.Auth -> {
+                        binding.loading.visibility = View.GONE
+                        updateUiWithUser((LoggedInUserView(it.data?.providerId!!, it.data.uid, true)))
+                    }
+                    is Result.Enter -> {
+                        binding.loading.visibility = View.GONE
+                        updateUiWithUser(LoggedInUserView(it.data?.providerId!!, it.data.uid, false))
+                    }
+                    is Result.Fail -> {
+                        binding.loading.visibility = View.GONE
+                        showLoginFailed(it.message.toString())
+                    }
+                }
+            }
         }
     }
 
@@ -99,12 +111,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val welcome = getString(R.string.welcome) + model.id
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
-            startActivity(Intent(requireActivity(), MainActivity::class.java))
-            requireActivity().finish()
+        startActivity(Intent(requireActivity(), MainActivity::class.java))
+        requireActivity().finish()
     }
 
     private fun showLoginFailed(errorString: String) {
         val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, errorString /*"Такого пользователя не существует"*/, Toast.LENGTH_LONG).show()
+        Toast.makeText(appContext,
+//            "Такого пользователя не существует"
+            errorString
+            , Toast.LENGTH_LONG).show()
     }
 }
