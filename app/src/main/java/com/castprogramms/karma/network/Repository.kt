@@ -1,5 +1,6 @@
 package com.castprogramms.karma.network
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.castprogramms.karma.data.Result
 import com.castprogramms.karma.tools.Service
@@ -21,13 +22,20 @@ class Repository(private val serviceFireStore: ServiceFireStore,
 
     fun login(email: String, password: String){
         if (user == null){
+            userLiveData.postValue(Result.Loading())
             fireBaseAuthenticator.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener {
-                    if (it.user != null)
-                        userLiveData.postValue(Result.Enter(it.user!!))
-                }
-                .addOnFailureListener {
-                    userLiveData.postValue(Result.Fail(it.message.toString()))
+                .addOnCompleteListener {
+                    if (it.isSuccessful)
+                        userLiveData.postValue(Result.Enter(it.result?.user!!))
+//                        fireBaseAuthenticator.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+//                            if (it.isSuccessful){
+//                                userLiveData.postValue(Result.Enter(it.result?.user!!))
+//                            }
+//                            else
+//                                userLiveData.postValue(Result.Fail(it.exception?.message.toString()))
+//                        }
+                }.addOnFailureListener {
+                    userLiveData.postValue(Result.Fail(it.message))
                 }
             }
     }

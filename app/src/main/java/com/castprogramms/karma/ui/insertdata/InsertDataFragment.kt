@@ -66,7 +66,7 @@ class InsertDataFragment: Fragment() {
                     binding.name.text.toString(),
                     binding.family.text.toString(),
                     binding.number.text.toString()
-                ), binding.email.text.toString(), binding.password.toString())
+                ), binding.email.text.toString(), binding.password.text.toString())
                 findNavController().navigate(R.id.action_insertDataFragment_to_loginFragment)
             }
         }
