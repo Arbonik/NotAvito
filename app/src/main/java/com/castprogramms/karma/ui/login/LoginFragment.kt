@@ -20,17 +20,9 @@ import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.FragmentLoginBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private val loginViewModel: LoginViewModel by viewModel()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -113,6 +105,6 @@ class LoginFragment : Fragment() {
 
     private fun showLoginFailed(errorString: String) {
         val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, "Такого пользователя не существует", Toast.LENGTH_LONG).show()
+        Toast.makeText(appContext, errorString /*"Такого пользователя не существует"*/, Toast.LENGTH_LONG).show()
     }
 }

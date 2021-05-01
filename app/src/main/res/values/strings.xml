@@ -16,6 +16,7 @@
     <string name="name_service">Название услуги</string>
     <string name="cost">Цена услуги</string>
     <string name="desc">Описание услуги</string>
+    <string name="desc_op">Описание</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Почта</string>
     <string name="prompt_password">Пароль</string>
