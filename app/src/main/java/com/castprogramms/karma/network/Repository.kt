@@ -25,8 +25,10 @@ class Repository(private val serviceFireStore: ServiceFireStore,
             userLiveData.postValue(Result.Loading())
             fireBaseAuthenticator.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
-                    if (it.isSuccessful)
+                    if (it.isSuccessful) {
                         userLiveData.postValue(Result.Enter(it.result?.user!!))
+                        user = it.result?.user
+                    }
 //                        fireBaseAuthenticator.signInWithEmailAndPassword(email, password).addOnCompleteListener {
 //                            if (it.isSuccessful){
 //                                userLiveData.postValue(Result.Enter(it.result?.user!!))
@@ -48,6 +50,7 @@ class Repository(private val serviceFireStore: ServiceFireStore,
                     if (it.result != null){
                         id = it.result?.user!!.uid
                         userLiveData.postValue(Result.Auth(it.result?.user!!))
+                        this.user = it.result?.user
                     }
                 }
             }.continueWith {

@@ -34,6 +34,14 @@
             app:sliderScrollTimeInSec="1"
             app:sliderStartAutoCycle="true" />
 
+        <ProgressBar
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:id="@+id/sliderProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/purple_200"/>
+
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.textview.MaterialTextView
@@ -104,10 +112,11 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,29 +127,29 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="12dp"
-            android:src="@drawable/male_user"/>
+            android:src="@drawable/male_user" />
 
         <LinearLayout
-            android:layout_toEndOf="@id/icon_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/icon_user"
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/name_user"
+                style="@style/TextNormalBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                style="@style/TextNormalBody"
-                tools:text="Vasili"/>
+                tools:text="Vasili" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/number_user"
+                style="@style/TextNormalBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextNormalBody"
-                tools:text="345765"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                tools:text="345765" />
 
         </LinearLayout>
 
@@ -159,5 +168,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="24dp" />
+
+    <ProgressBar
+        android:id="@+id/allProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/purple_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
