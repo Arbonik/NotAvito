@@ -35,8 +35,8 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentLoginBinding.bind(view)
-        binding.usernameContainer.setHelperTextColor(ColorStateList.valueOf(Color.RED))
-        binding.passwordContainer.setHelperTextColor(ColorStateList.valueOf(Color.RED))
+        binding.usernameContainer.setHelperTextColor(ColorStateList.valueOf(Color.rgb(139, 128, 249)))
+        binding.passwordContainer.setHelperTextColor(ColorStateList.valueOf(Color.rgb(139, 128, 249)))
 
         loginViewModel.loginFormState.observe(viewLifecycleOwner,
             Observer { loginFormState ->
@@ -45,11 +45,9 @@ class LoginFragment : Fragment() {
                 }
                 binding.login.isEnabled = loginFormState.isDataValid
                 loginFormState.usernameError?.let {
-                    binding.username.error = getString(it)
                     binding.usernameContainer.helperText = getString(it)
                 }
                 loginFormState.passwordError?.let {
-                    binding.password.error = getString(it)
                     binding.passwordContainer.helperText = getString(it)
                 }
             })
@@ -109,10 +107,8 @@ class LoginFragment : Fragment() {
         val welcome = getString(R.string.welcome) + model.id
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
-//        if (!model.isFirstEnter) {
             startActivity(Intent(requireActivity(), MainActivity::class.java))
             requireActivity().finish()
-//        }
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

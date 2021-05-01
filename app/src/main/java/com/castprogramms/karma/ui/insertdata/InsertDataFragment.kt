@@ -1,6 +1,8 @@
 package com.castprogramms.karma.ui.insertdata
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.LayoutInflater
@@ -23,6 +25,12 @@ class InsertDataFragment: Fragment() {
         val view = inflater.inflate(R.layout.fragment_insert_data, container, false)
         val binding = FragmentInsertDataBinding.bind(view)
         val listCheck = mutableListOf<Boolean>()
+        binding.nameContainer.setHelperTextColor(ColorStateList.valueOf(Color.rgb(139, 128, 249)))
+        binding.familyContainer.setHelperTextColor(ColorStateList.valueOf(Color.rgb(139, 128, 249)))
+        binding.numberContainer.setHelperTextColor(ColorStateList.valueOf(Color.rgb(139, 128, 249)))
+        binding.emailContainer.setHelperTextColor(ColorStateList.valueOf(Color.rgb(139, 128, 249)))
+        binding.passwordContainer.setHelperTextColor(ColorStateList.valueOf(Color.rgb(139, 128, 249)))
+        binding.passwordRepeatContainer.setHelperTextColor(ColorStateList.valueOf(Color.rgb(139, 128, 249)))
         binding.registration.setOnClickListener {
             if (binding.name.text.isNullOrBlank()) {
                 binding.nameContainer.helperText = "Введите имя"
@@ -44,7 +52,7 @@ class InsertDataFragment: Fragment() {
             }
 
             if (binding.password.text.isNullOrBlank()) {
-                binding.passwordContainer.helperText = "Введите пароль"
+                binding.passwordContainer.helperText = getString(R.string.invalid_password)
                 listCheck.add(false)
             }
 
