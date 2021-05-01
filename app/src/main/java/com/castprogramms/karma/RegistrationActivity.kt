@@ -19,7 +19,7 @@ class RegistrationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_registr)
         supportActionBar?.hide()
         repository.userLiveData.observe(this) {
-            if (it != null){
+            if (it != null && it is Result.Enter){
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }

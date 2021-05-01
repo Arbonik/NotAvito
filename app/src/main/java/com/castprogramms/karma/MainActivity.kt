@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             if (it != null) {
                 when (it) {
                     is Result.Auth -> {
-                        repository.getUser(it.data.uid).observe(this) {
+                        repository.getUser(it.data?.uid!!).observe(this) {
                             when(it){
                                 is Resource.Error -> {}
                                 is Resource.Loading -> {}
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                         binding.textView.text = it.data.email
                     }
                     is Result.Enter -> {
-                        repository.getUser(it.data.uid).observe(this) {
+                        repository.getUser(it.data?.uid!!).observe(this) {
                             when(it){
                                 is Resource.Error -> {
 
@@ -73,11 +73,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
-
-    /*override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }*/
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)

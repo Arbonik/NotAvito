@@ -1,16 +1,21 @@
 package com.castprogramms.karma.tools.time
 
-import java.time.Year
 import java.util.*
-
 
 object TimeModule {
     fun now(): DataTime {
         val date = Calendar.getInstance()
+        val minute = Calendar.MINUTE
+        var strMinute = ""
+        if (minute < 10){
+            strMinute = "0$minute"
+        }
+        else
+            strMinute = minute.toString()
         return DataTime(date.get(Calendar.YEAR),
             date.get(Calendar.MONTH)+1,
                 date.get(Calendar.DAY_OF_MONTH),
-                date.get(Calendar.HOUR_OF_DAY).toString() + ":" + date.get(Calendar.MINUTE),
+                date.get(Calendar.HOUR_OF_DAY).toString() + ":" + strMinute,
                 (date.timeZone.rawOffset / 1000 / 3600).toString())
     }
 

@@ -24,11 +24,16 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
                 when (it) {
                     is Result.Auth -> {
                         _loginResult.value =
-                            LoginResult(LoggedInUserView(it.data.providerId, it.data.uid, true))
+                            LoginResult(LoggedInUserView(it.data?.providerId!!, it.data.uid, true))
                     }
                     is Result.Enter -> {
                         _loginResult.value =
-                            LoginResult(LoggedInUserView(it.data.providerId, it.data.uid, false))
+                            LoginResult(LoggedInUserView(it.data?.providerId!!, it.data.uid, false))
+                    }
+                    is Result.Fail -> {
+                        _loginResult.postValue(
+                            LoginResult(error = it.message)
+                        )
                     }
                 }
             }

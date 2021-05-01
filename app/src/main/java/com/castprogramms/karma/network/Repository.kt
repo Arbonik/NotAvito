@@ -21,18 +21,13 @@ class Repository(private val serviceFireStore: ServiceFireStore,
 
     fun login(email: String, password: String){
         if (user == null){
-            fireBaseAuthenticator.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        userLiveData.postValue(Result.Auth(it.result?.user!!))
-                    } else {
-                        fireBaseAuthenticator.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                            if (it.isSuccessful){
-                                if (it.result != null)
-                                userLiveData.postValue(Result.Enter(it.result?.user!!))
-                            }
-                        }
-                    }
+            fireBaseAuthenticator.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener {
+                    if (it.user != null)
+                        userLiveData.postValue(Result.Enter(it.user!!))
+                }
+                .addOnFailureListener {
+                    userLiveData.postValue(Result.Fail(it.message.toString()))
                 }
             }
     }
@@ -49,7 +44,7 @@ class Repository(private val serviceFireStore: ServiceFireStore,
                 }
             }.continueWith {
                 if (id != "")
-                manageUserDataFireStore.addUser(user, id)
+                    manageUserDataFireStore.addUser(user, id)
             }
     }
 

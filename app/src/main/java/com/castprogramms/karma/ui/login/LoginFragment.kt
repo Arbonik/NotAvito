@@ -111,8 +111,8 @@ class LoginFragment : Fragment() {
             requireActivity().finish()
     }
 
-    private fun showLoginFailed(@StringRes errorString: Int) {
+    private fun showLoginFailed(errorString: String) {
         val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
+        Toast.makeText(appContext, "Такого пользователя не существует", Toast.LENGTH_LONG).show()
     }
 }
