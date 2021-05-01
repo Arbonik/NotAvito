@@ -16,10 +16,10 @@ class ProfileViewModel(private val repository: Repository) : ViewModel() {
         val user = getUser().value
         when(user){
             is Result.Enter ->{
-                id = user.data.uid
+                id = user.data?.uid!!
             }
             is Result.Auth ->{
-                id = user.data.uid
+                id = user.data?.uid!!
             }
         }
         if (id != "")

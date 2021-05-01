@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.castprogramms.karma.MainActivity
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.FragmentInsertDataBinding
@@ -58,8 +59,7 @@ class InsertDataFragment: Fragment() {
                     binding.family.text.toString(),
                     binding.number.text.toString()
                 ), binding.email.text.toString(), binding.password.toString())
-                startActivity(Intent(requireActivity(), MainActivity::class.java))
-                requireActivity().finish()
+                findNavController().navigate(R.id.action_insertDataFragment_to_loginFragment)
             }
         }
         return view

@@ -109,14 +109,12 @@ class LoginFragment : Fragment() {
         val welcome = getString(R.string.welcome) + model.id
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
-//        if (!model.isFirstEnter) {
             startActivity(Intent(requireActivity(), MainActivity::class.java))
             requireActivity().finish()
-//        }
     }
 
-    private fun showLoginFailed(@StringRes errorString: Int) {
+    private fun showLoginFailed(errorString: String) {
         val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
+        Toast.makeText(appContext, "Такого пользователя не существует", Toast.LENGTH_LONG).show()
     }
 }
