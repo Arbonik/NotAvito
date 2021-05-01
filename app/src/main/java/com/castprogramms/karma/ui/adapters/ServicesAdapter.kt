@@ -48,7 +48,7 @@ class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(
     inner class ServicesViewHolder(view: View): RecyclerView.ViewHolder(view){
         val binding = ItemServicesBinding.bind(itemView)
         fun onbind(service: Service, id: String){
-            binding.cost.text = service.cost.toString()
+            binding.cost.text = service.cost.toString() + "₽"
             binding.name.text = service.name
             binding.nameAuthor.text = service.desc
             binding.time.text = TimeModule.getServiceTime(service.dataTime)

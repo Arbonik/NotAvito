@@ -51,7 +51,7 @@ class ProfileServicesAdapter(val deleteService:(service: Service) -> Unit): Recy
     inner class ProfileServicesViewHolder(view: View): RecyclerView.ViewHolder(view){
         val binding = ItemServicesBinding.bind(itemView)
         fun onbind(service: Service){
-            binding.cost.text = service.cost.toString()
+            binding.cost.text = service.cost.toString() + "₽"
             binding.name.text = service.name
             binding.nameAuthor.text = service.desc
             binding.time.text = TimeModule.getServiceTime(service.dataTime)

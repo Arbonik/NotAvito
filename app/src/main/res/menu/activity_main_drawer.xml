@@ -7,7 +7,7 @@
         <item
             android:id="@+id/profileFragment"
             android:icon="@drawable/person_24"
-            android:title="@string/profile" />
+            android:title="@string/my_services" />
         <item
             android:id="@+id/allServicesFragment"
             android:icon="@drawable/shopping_basket_24"

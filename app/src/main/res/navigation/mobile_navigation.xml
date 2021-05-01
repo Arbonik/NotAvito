@@ -8,15 +8,15 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.castprogramms.karma.ui.progfile.ProfileFragment"
-        android:label="@string/profile"
-        tools:layout="@layout/fragment_profile" >
+        android:label="@string/my_services"
+        tools:layout="@layout/fragment_profile">
         <action
+            android:id="@+id/action_profileFragment_to_addServiceFragment"
+            app:destination="@id/addServiceFragment"
             app:enterAnim="@anim/left_out"
             app:exitAnim="@anim/right_out"
             app:popEnterAnim="@anim/left_in"
-            app:popExitAnim="@anim/right_in"
-            android:id="@+id/action_profileFragment_to_addServiceFragment"
-            app:destination="@id/addServiceFragment" />
+            app:popExitAnim="@anim/right_in" />
     </fragment>
 
     <fragment
