@@ -1,4 +1,4 @@
-package com.castprogramms.karma.ui.gallery
+package com.castprogramms.karma.ui.progfile
 
 import android.os.Bundle
 import android.view.LayoutInflater

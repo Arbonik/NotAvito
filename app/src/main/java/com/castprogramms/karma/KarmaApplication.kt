@@ -6,7 +6,7 @@ import com.castprogramms.karma.network.Repository
 import com.castprogramms.karma.network.ServiceFireStore
 import com.castprogramms.karma.ui.addServices.AddServiceViewModel
 import com.castprogramms.karma.ui.allServices.ServicesViewModel
-import com.castprogramms.karma.ui.gallery.ProfileViewModel
+import com.castprogramms.karma.ui.progfile.ProfileViewModel
 import com.castprogramms.karma.ui.insertdata.InsertDataViewModel
 import com.castprogramms.karma.ui.login.LoginViewModel
 import org.koin.android.ext.koin.androidContext

@@ -6,5 +6,6 @@ enum class Fields(val desc: String) {
     SERVICES_DESC("desc"),
     SERVICES_PHOTO("photo"),
     SERVICES_NAME("name"),
-    SERVICES_DATA_TIME("dataTime")
+    SERVICES_DATA_TIME("dataTime"),
+    SERVICE_UNIT("unit")
 }

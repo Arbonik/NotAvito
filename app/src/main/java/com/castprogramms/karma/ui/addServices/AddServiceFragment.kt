@@ -53,13 +53,14 @@ class AddServiceFragment: Fragment() {
                         binding.nameService.text.toString(),
                         binding.costService.text.toString().toInt(),
                         binding.descService.text.toString(),
-                        uri.toString(), user.uid, TimeModule.now()
+                        uri.toString(), user.uid, TimeModule.now(),
+                        binding.unitService.text.toString(),
                     )
                 )
                 findNavController().navigate(R.id.action_addServiceFragment_to_profileFragment)
             }
         }
-        val adapterDrop = ArrayAdapter(requireContext(), R.layout.dropdown_item /*android.R.layout.simple_dropdown_item_1line*/, unit)
+        val adapterDrop = ArrayAdapter(requireContext(), R.layout.dropdown_item, unit)
         binding.unitService.setAdapter(adapterDrop)
         binding.unitService.onItemClickListener = AdapterView.OnItemClickListener { parent, _,
                                                                                     position, id ->

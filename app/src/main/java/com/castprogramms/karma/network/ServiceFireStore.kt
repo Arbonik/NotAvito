@@ -28,6 +28,7 @@ class ServiceFireStore: ServiceFireStoreInterface {
             .whereEqualTo(Fields.SERVICES_DESC.desc, service.desc)
             .whereEqualTo(Fields.SERVICES_ID_AUTHOR.desc, service.idAuthor)
             .whereEqualTo(Fields.SERVICES_NAME.desc, service.name)
+            .whereEqualTo(Fields.SERVICE_UNIT.desc, service.unit)
             .get().addOnCompleteListener {
                 if (it.isSuccessful){
                     it.result?.documents?.forEach {

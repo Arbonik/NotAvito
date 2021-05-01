@@ -1,6 +1,5 @@
-package com.castprogramms.karma.ui.gallery
+package com.castprogramms.karma.ui.progfile
 
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.castprogramms.karma.data.Result

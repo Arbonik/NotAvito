@@ -52,6 +52,7 @@ class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(
             binding.name.text = service.name
             binding.nameAuthor.text = service.desc
             binding.time.text = TimeModule.getServiceTime(service.dataTime)
+            binding.unit.text = "/" + service.unit
             try {
                 if (service.photo != "")
                 Glide.with(itemView)

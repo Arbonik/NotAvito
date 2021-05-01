@@ -8,5 +8,6 @@ data class Service(
     var desc : String = "",
     var photo: String = "",
     var idAuthor : String ="",
-    var dataTime: DataTime = DataTime()
+    var dataTime: DataTime = DataTime(),
+    var unit : String = ""
 )
