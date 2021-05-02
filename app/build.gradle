@@ -65,6 +65,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:22.1.2'
     implementation 'com.google.firebase:firebase-storage:19.2.2'
     implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     //test
     testImplementation 'junit:junit:4.+'

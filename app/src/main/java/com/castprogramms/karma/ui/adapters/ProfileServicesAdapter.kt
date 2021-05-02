@@ -9,17 +9,22 @@ import android.view.ViewGroup
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.castprogramms.karma.MainActivity
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.ItemServicesBinding
 import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.tools.time.TimeModule
+import com.castprogramms.karma.ui.progfile.ProfileFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.NonCancellable.cancel
 import java.lang.Exception
 
 class ProfileServicesAdapter(val deleteService:(service: Service) -> Unit): RecyclerView.Adapter<ProfileServicesAdapter.ProfileServicesViewHolder>() {
@@ -93,7 +98,6 @@ class ProfileServicesAdapter(val deleteService:(service: Service) -> Unit): Recy
                     .into(binding.photo)
             }
             binding.root.setOnLongClickListener {
-                // надо сделать всплывающее меню снизу с кнопками Редактровать и Удалить
                 showMenu(it, R.menu.card_option_menu, service)
                 true
             }
@@ -107,16 +111,21 @@ class ProfileServicesAdapter(val deleteService:(service: Service) -> Unit): Recy
 
                     }
                     R.id.opt_delete ->{
-                        deleteService(service)
+                        MaterialAlertDialogBuilder(itemView.context,  R.style.MaterialAlertDialog_OK_color)
+                            .setTitle("Вы хотите удалить услугу?")
+                            .setNegativeButton("Отмена") { dialog, which -> }
+                            .setPositiveButton("Да") { dialog, which ->
+                                deleteService(service)
+                            }
+                            .show()
 //                        mutableLiveDataNeedDelete.postValue(mutableLiveDataNeedDelete.value?.apply { add(service) })
                     }
                 }
                 true
             }
             popup.setOnDismissListener {
-                // Respond to popup being dismissed.
+
             }
-            // Show the popup menu.
             popup.show()
         }
     }

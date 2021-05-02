@@ -129,4 +129,19 @@
     <style name="TextStyle">
         <item name="android:textColor">@color/tx_grey</item>
     </style>
+
+    <!-- Alert Dialog -->
+    <style name="MaterialAlertDialog_OK_color" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <!-- Style for positive button -->
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle.textColor</item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle.textColor</item>
+    </style>
+
+    <style name="PositiveButtonStyle.textColor" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/fio_norm</item>
+    </style>
+    <style name="NegativeButtonStyle.textColor" parent="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/fio_norm</item>
+    </style>
+
 </resources>

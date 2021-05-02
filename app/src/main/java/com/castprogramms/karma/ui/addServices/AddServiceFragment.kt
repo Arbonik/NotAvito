@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.FragmentAddServiceBinding
 import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.tools.time.TimeModule
+import com.castprogramms.karma.ui.login.LoginFormState
 import com.google.firebase.storage.FirebaseStorage
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -47,25 +49,28 @@ class AddServiceFragment: Fragment() {
         }
         val user = addServiceViewModel.getUser()
         binding.acceptEdit.setOnClickListener {
-            if (user != null) {
-                addServiceViewModel.addService(
-                    Service(
-                        binding.nameService.text.toString(),
-                        binding.costService.text.toString().toInt(),
-                        binding.descService.text.toString(),
-                        uri.toString(), user.uid, TimeModule.now(),
-                        binding.unitService.text.toString(),
+            if(binding.nameService.text.toString().equals("") or binding.costService.text.toString().equals("") or
+                binding.descService.text.toString().equals("") or binding.unitService.text.toString().equals("")) {
+                Toast.makeText(requireContext(), "Заполните все поля", Toast.LENGTH_SHORT).show()
+            } else {
+                if (user != null) {
+                    addServiceViewModel.addService(
+                        Service(
+                            binding.nameService.text.toString(),
+                            binding.costService.text.toString().toInt(),
+                            binding.descService.text.toString(),
+                            uri.toString(), user.uid, TimeModule.now(),
+                            binding.unitService.text.toString(),
+                        )
                     )
-                )
-                findNavController().navigate(R.id.action_addServiceFragment_to_profileFragment)
+                    findNavController().navigate(R.id.action_addServiceFragment_to_profileFragment)
+                }
             }
         }
         val adapterDrop = ArrayAdapter(requireContext(), R.layout.dropdown_item, unit)
         binding.unitService.setAdapter(adapterDrop)
-        binding.unitService.onItemClickListener = AdapterView.OnItemClickListener { parent, _,
-                                                                                    position, id ->
+        binding.unitService.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, id ->
             val selectedItem = parent.getItemAtPosition(position).toString()
-            //Toast.makeText(requireContext(), "Selected: $selectedItem", Toast.LENGTH_SHORT).show()
         }
 
         return view

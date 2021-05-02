@@ -60,11 +60,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         val afterTextChangedListener = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                // ignore
+
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                // ignore
+
             }
 
             override fun afterTextChanged(s: Editable) {
