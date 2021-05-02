@@ -110,8 +110,6 @@
         <item name="cornerSize">8dp</item>
     </style>
 
-
-
     <style name="ToolbarStyle" parent="@style/Widget.AppCompat.Toolbar">
         <!-- Makes the toolbar text whatever color you want for both light/dark-->
         <item name="titleTextColor">@color/tx_grey</item>
