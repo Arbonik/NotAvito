@@ -34,13 +34,6 @@
             app:sliderScrollTimeInSec="1"
             app:sliderStartAutoCycle="true" />
 
-        <ProgressBar
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:id="@+id/sliderProgressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminateTint="@color/purple_200"/>
 
     </com.google.android.material.card.MaterialCardView>
 

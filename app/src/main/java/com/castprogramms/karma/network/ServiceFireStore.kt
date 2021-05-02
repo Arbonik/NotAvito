@@ -78,6 +78,21 @@ class ServiceFireStore: ServiceFireStoreInterface {
         return mutableLiveData
     }
 
+    override fun getService(id: String): MutableLiveData<Resource<Service>> {
+        val mutableLiveData = MutableLiveData<Resource<Service>>(null)
+        fireStore.collection(SERVICES_TAG)
+            .document(id)
+            .addSnapshotListener { value, error ->
+                if (value != null){
+                    mutableLiveData.postValue(Resource.Loading())
+                    mutableLiveData.postValue(Resource.Success(value.toObject(Service::class.java)!!))
+                }
+                else
+                    mutableLiveData.postValue(Resource.Error(error?.message))
+            }
+        return mutableLiveData
+    }
+
     companion object{
         const val SERVICES_TAG = "services"
         const val USERS_TAG = "users"
