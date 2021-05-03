@@ -15,6 +15,8 @@ class ServiceViewModel(private val repository: Repository): ViewModel() {
     }
 
     fun loadUserData(id: String) {
-        liveDataUserData = repository.getUser(id)
+        repository.getUser(id).observeForever {
+            liveDataUserData.postValue(it)
+        }
     }
 }

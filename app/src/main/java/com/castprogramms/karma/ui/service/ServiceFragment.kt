@@ -2,6 +2,7 @@ package com.castprogramms.karma.ui.service
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.castprogramms.karma.R
@@ -36,6 +37,7 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                 is Resource.Success -> {
                     val service = it.data
                     if (service != null){
+                        serviceViewModel.loadUserData(service.idAuthor)
                         binding.nameShowServ.text = service.name
                         binding.costShowServ.text = service.cost.toString()
                         binding.unitShowServ.text = "/" + service.unit
@@ -43,25 +45,27 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                         binding.imageSlider.setSliderAdapter(ServiceSliderAdapter().apply {
                             setUris(listOf(Uri.parse(service.photo)))
                         })
-                        serviceViewModel.loadUserData(service.idAuthor)
+
                     }
                 }
             }
-        }
-        serviceViewModel.liveDataUserData.observe(viewLifecycleOwner){
-            when(it){
-                is Resource.Error -> {
+        }.runCatching {
+            Log.e("data", "te")
+            serviceViewModel.liveDataUserData.observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Error -> {
 
-                }
-                is Resource.Loading -> {
-                    binding.allProgressBar.visibility = View.VISIBLE
-                }
-                is Resource.Success -> {
-                    binding.allProgressBar.visibility = View.GONE
-                    val pair = it.data
-                    if (pair != null){
-                        binding.nameUser.text = pair.second.getFullName()
-                        binding.numberUser.text = pair.second.number
+                    }
+                    is Resource.Loading -> {
+                        binding.allProgressBar.visibility = View.VISIBLE
+                    }
+                    is Resource.Success -> {
+                        binding.allProgressBar.visibility = View.GONE
+                        val pair = it.data
+                        if (pair != null) {
+                            binding.nameUser.text = pair.second.getFullName()
+                            binding.numberUser.text = pair.second.number
+                        }
                     }
                 }
             }
