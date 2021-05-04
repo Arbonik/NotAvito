@@ -37,52 +37,51 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/name_show_serv"
-        style="@style/TextNormalTitle"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/name_show_serv_cont"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="26sp"
+        android:orientation="horizontal"
+        android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-        tools:text="Фотограф" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/cost_show_serv"
-        style="@style/TextNormalTitle"
-        android:textSize="22sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="14dp"
-        app:layout_constraintEnd_toStartOf="@+id/unit_show_serv"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-        tools:text="233" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/unit_show_serv"
-        style="@style/TextNormalTitle"
-        android:textSize="22sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="14dp"
+        android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-        tools:text="/день" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/name_show_serv"
+            style="@style/TextNormalTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:textSize="26sp"
+            android:layout_gravity="left|center_vertical"
+            tools:text="Фотограф" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cost_show_serv"
+            style="@style/TextNormalTitle"
+            android:maxLines="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:textSize="22sp"
+            tools:text="233" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginTop="14dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_show_serv">
+        app:layout_constraintTop_toBottomOf="@+id/name_show_serv_cont">
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/TextNormalTitle"

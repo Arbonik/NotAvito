@@ -39,8 +39,7 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                     if (service != null){
                         serviceViewModel.loadUserData(service.idAuthor)
                         binding.nameShowServ.text = service.name
-                        binding.costShowServ.text = service.cost.toString()
-                        binding.unitShowServ.text = "/" + service.unit
+                        binding.costShowServ.text = service.cost.toString() + "/" + service.unit.toString()
                         binding.descShowServ.text = service.desc
                         binding.imageSlider.setSliderAdapter(ServiceSliderAdapter().apply {
                             setUris(listOf(Uri.parse(service.photo)))
