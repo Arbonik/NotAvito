@@ -5,7 +5,7 @@ import java.util.*
 object TimeModule {
     fun now(): DataTime {
         val date = Calendar.getInstance()
-        val minute = Calendar.MINUTE
+        val minute = date.get(Calendar.MINUTE)
         var strMinute = ""
         if (minute < 10){
             strMinute = "0$minute"

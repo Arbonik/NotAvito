@@ -46,18 +46,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 }
             })
 
-//        loginViewModel.loginResult.observe(viewLifecycleOwner,
-//            Observer { loginResult ->
-//                loginResult ?: return@Observer
-//                binding.loading.visibility = View.GONE
-//                loginResult.error?.let {
-//                    showLoginFailed(it)
-//                }
-//                loginResult.success?.let {
-//                    updateUiWithUser(it)
-//                }
-//            })
-
         val afterTextChangedListener = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
 
