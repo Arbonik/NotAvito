@@ -46,4 +46,7 @@
     <string name="my_services">Мои услуги</string>
     <string name="service">Услуга</string>
     <string name="image_card">Добавить заявку</string>
+
+    <string name="search">Поиск</string>
+    <string name="empty">По вашему запросу ничего не найдено</string>
 </resources>

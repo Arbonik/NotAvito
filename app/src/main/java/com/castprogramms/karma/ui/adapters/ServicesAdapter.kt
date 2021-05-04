@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SortedList
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -19,12 +22,17 @@ import com.castprogramms.karma.tools.time.TimeModule
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
-class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>() {
+class ServicesAdapter(val showEmpty:(boolean: Boolean) -> Unit) : RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(), Filterable {
     var services = mutableListOf<Service>()
     var ids = mutableListOf<String>()
+    var sortedServices = mutableListOf<Service>()
+    var sortedIDs = mutableListOf<String>()
     fun setService(list: Pair<List<Service>, List<String>>){
-        services = list.first.toMutableList()
-        ids = list.second.toMutableList()
+        val sortedList = sorted(list)
+        services = sortedList.first.toMutableList()
+        ids = sortedList.second.toMutableList()
+        sortedServices = services
+        sortedIDs = ids
         notifyDataSetChanged()
     }
 
@@ -40,10 +48,10 @@ class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(
     }
 
     override fun onBindViewHolder(holder: ServicesViewHolder, position: Int) {
-        holder.onbind(services[position], ids[position])
+        holder.onbind(sortedServices[position], sortedIDs[position])
     }
 
-    override fun getItemCount() = services.size
+    override fun getItemCount() = sortedServices.size
 
     inner class ServicesViewHolder(view: View): RecyclerView.ViewHolder(view){
         val binding = ItemServicesBinding.bind(itemView)
@@ -94,5 +102,48 @@ class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(
                 itemView.findNavController().navigate(R.id.action_allServicesFragment_to_serviceFragment, bundle)
             }
         }
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter(){
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                sortedServices = mutableListOf()
+                sortedIDs = mutableListOf()
+                val isContains = mutableListOf<Boolean>()
+                services.forEach {
+                    if (it.name.contains(constraint.toString(), true))
+                        isContains.add(true)
+                    else
+                        isContains.add(false)
+                }
+                for (i in services.indices)
+                    if (isContains[i]) {
+                        sortedServices.add(services[i])
+                        sortedIDs.add(ids[i])
+                    }
+                return FilterResults().apply { values = sortedServices to sortedIDs}
+            }
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                if (results != null) {
+                    val values = results.values as Pair<MutableList<Service>, MutableList<String>>
+                    sortedServices = values.first
+                    sortedIDs = values.second
+                    if (sortedServices.isEmpty())
+                        showEmpty(true)
+                    else
+                        showEmpty(false)
+                    notifyDataSetChanged()
+                }
+            }
+        }
+    }
+    fun sorted(pair: Pair<List<Service>, List<String>>): Pair<List<Service>, List<String>> {
+        val mutableMap = mutableMapOf<Service, String>()
+        for (i in pair.first.indices)
+            mutableMap.put(pair.first[i], pair.second[i])
+        mutableMap.toSortedMap( compareBy{
+            it.dataTime.day
+        }).toMap()
+        return mutableMap.keys.toList() to mutableMap.values.toList()
     }
 }

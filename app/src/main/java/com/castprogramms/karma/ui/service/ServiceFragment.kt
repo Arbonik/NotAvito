@@ -39,7 +39,7 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                     if (service != null){
                         serviceViewModel.loadUserData(service.idAuthor)
                         binding.nameShowServ.text = service.name
-                        binding.costShowServ.text = service.cost.toString()
+                        binding.costShowServ.text = service.cost.toString() +  "₽"
                         binding.unitShowServ.text = "/" + service.unit
                         binding.descShowServ.text = service.desc
                         binding.imageSlider.setSliderAdapter(ServiceSliderAdapter().apply {
@@ -49,23 +49,21 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                     }
                 }
             }
-        }.runCatching {
-            Log.e("data", "te")
-            serviceViewModel.liveDataUserData.observe(viewLifecycleOwner) {
-                when (it) {
-                    is Resource.Error -> {
+        }
+        serviceViewModel.liveDataUserData.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> {
 
-                    }
-                    is Resource.Loading -> {
-                        binding.allProgressBar.visibility = View.VISIBLE
-                    }
-                    is Resource.Success -> {
-                        binding.allProgressBar.visibility = View.GONE
-                        val pair = it.data
-                        if (pair != null) {
-                            binding.nameUser.text = pair.second.getFullName()
-                            binding.numberUser.text = pair.second.number
-                        }
+                }
+                is Resource.Loading -> {
+                    binding.allProgressBar.visibility = View.VISIBLE
+                }
+                is Resource.Success -> {
+                    binding.allProgressBar.visibility = View.GONE
+                    val pair = it.data
+                    if (pair != null) {
+                        binding.nameUser.text = pair.second.getFullName()
+                        binding.numberUser.text = pair.second.number
                     }
                 }
             }
