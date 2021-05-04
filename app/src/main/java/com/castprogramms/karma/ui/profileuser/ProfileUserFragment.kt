@@ -32,9 +32,9 @@ class ProfileUserFragment : Fragment() {
     ): View? {
         val view =  inflater.inflate(R.layout.profile_user_fragment, container, false)
         val binding = ProfileUserFragmentBinding.bind(view)
-        val adapter = ServicesAdapter()
+        //val adapter = ServicesAdapter()
         binding.myRecServiceProfile.layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.myRecServiceProfile.adapter = adapter
+        //binding.myRecServiceProfile.adapter = adapter
         profileUserViewModel.getUserServices(idAuthor).observe(viewLifecycleOwner){
             when(it){
                 is Resource.Error -> { }
