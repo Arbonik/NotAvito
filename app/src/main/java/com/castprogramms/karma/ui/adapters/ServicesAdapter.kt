@@ -18,9 +18,11 @@ import com.bumptech.glide.request.target.Target
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.ItemServicesBinding
 import com.castprogramms.karma.tools.Service
+import com.castprogramms.karma.tools.time.DataTime
 import com.castprogramms.karma.tools.time.TimeModule
 import com.squareup.picasso.Picasso
 import java.lang.Exception
+import java.util.*
 
 class ServicesAdapter(val showEmpty:(boolean: Boolean) -> Unit) : RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(), Filterable {
     var services = mutableListOf<Service>()
@@ -138,12 +140,33 @@ class ServicesAdapter(val showEmpty:(boolean: Boolean) -> Unit) : RecyclerView.A
         }
     }
     fun sorted(pair: Pair<List<Service>, List<String>>): Pair<List<Service>, List<String>> {
-        val mutableMap = mutableMapOf<Service, String>()
+        var mutableMap = mutableMapOf<Service, String>()
         for (i in pair.first.indices)
             mutableMap.put(pair.first[i], pair.second[i])
-        mutableMap.toSortedMap( compareBy{
-            it.dataTime.day
-        }).toMap()
+        mutableMap = mutableMap.toList().sortedWith( compareBy {
+            getSortData(it.first.dataTime)
+        }).reversed().toMap().toMutableMap()
         return mutableMap.keys.toList() to mutableMap.values.toList()
+    }
+
+    fun getSortData(dataTime: DataTime):String{
+        var string = ""
+        string += dataTime.year.toString()
+        if (dataTime.mouth<10)
+            string += "0${dataTime.mouth}"
+        else
+            string += dataTime.mouth.toString()
+        if (dataTime.day < 10)
+            string += "0${dataTime.day}"
+        else
+            string += dataTime.day.toString()
+        val array = dataTime.time.split(':')
+        array.forEach {
+            if (it.toInt() < 10)
+                string += "0$it"
+            else
+                string += it
+        }
+        return string
     }
 }
