@@ -3,6 +3,7 @@ package com.castprogramms.karma.network
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.castprogramms.karma.data.Result
+import com.castprogramms.karma.tools.Score
 import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.tools.User
 import com.google.firebase.auth.FirebaseAuth
@@ -29,13 +30,6 @@ class Repository(private val serviceFireStore: ServiceFireStore,
                         userLiveData.postValue(Result.Enter(it.result?.user!!))
                         user = it.result?.user
                     }
-//                        fireBaseAuthenticator.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-//                            if (it.isSuccessful){
-//                                userLiveData.postValue(Result.Enter(it.result?.user!!))
-//                            }
-//                            else
-//                                userLiveData.postValue(Result.Fail(it.exception?.message.toString()))
-//                        }
                 }.addOnFailureListener {
                     userLiveData.postValue(Result.Fail(it.message))
                 }
@@ -59,10 +53,12 @@ class Repository(private val serviceFireStore: ServiceFireStore,
             }
     }
 
+    fun addScoreUser(id: String, score: Score) = manageUserDataFireStore.addScore(id, score)
     fun addService(service: Service) = serviceFireStore.addService(service)
     fun getAllServices() = serviceFireStore.getAllService()
     fun getAllUserServices(id: String) = serviceFireStore.getAllUserServices(id)
     fun getUser(id: String) = manageUserDataFireStore.getUser(id)
     fun deleteService(service: Service) = serviceFireStore.deleteService(service)
     fun getService(id: String) = serviceFireStore.getService(id)
+    fun getAllOtherUserServices(id: String) = serviceFireStore.getAllOtherUserServices(id)
 }
