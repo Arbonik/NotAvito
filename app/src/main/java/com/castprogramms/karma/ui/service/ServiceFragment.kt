@@ -39,7 +39,7 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                         serviceViewModel.loadUserData(service.idAuthor)
                         this.idAuthor = service.idAuthor
                         binding.nameShowServ.text = service.name
-                        binding.costShowServ.text = service.cost.toString() + "/" + service.unit.toString()
+                        binding.costShowServ.text = service.cost.toString() + "₽/" + service.unit.toString()
                         binding.descShowServ.text = service.desc
                         binding.imageSlider.setSliderAdapter(ServiceSliderAdapter().apply {
                             setUris(listOf(Uri.parse(service.photo)))
@@ -48,12 +48,12 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                     }
                 }
             }
-        }.runCatching {
-            Log.e("data", "te")
-            serviceViewModel.liveDataUserData.observe(viewLifecycleOwner) {
-                when (it) {
-                    is Resource.Error -> {  }
-                    is Resource.Loading -> {
+        }
+        Log.e("data", "te")
+        serviceViewModel.liveDataUserData.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> {  }
+                is Resource.Loading -> {
                         binding.allProgressBar.visibility = View.VISIBLE
                     }
                     is Resource.Success -> {
@@ -65,7 +65,6 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                         }
                     }
                 }
-            }
         }
         binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
         binding.imageSlider.scrollTimeInSec = 4
