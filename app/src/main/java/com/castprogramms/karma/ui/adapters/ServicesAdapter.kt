@@ -9,7 +9,6 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SortedList
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.Transformation
@@ -19,14 +18,14 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.ItemServicesBinding
+import com.castprogramms.karma.tools.Score
 import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.tools.time.DataTime
 import com.castprogramms.karma.tools.time.TimeModule
 import com.squareup.picasso.Picasso
 import java.lang.Exception
-import java.util.*
 
-class ServicesAdapter(val showEmpty:(boolean: Boolean) -> Unit) : RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(), Filterable {
+class ServicesAdapter(val showEmpty: (boolean: Boolean) -> Unit,val addScope: (id: String, score:Score) -> Unit) : RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(), Filterable {
     var services = mutableListOf<Service>()
     var ids = mutableListOf<String>()
     var sortedServices = mutableListOf<Service>()

@@ -50,10 +50,18 @@
         android:label="@string/service" >
         <action
             android:id="@+id/action_serviceFragment_to_editServiceFragment"
-            app:destination="@id/editServiceFragment" />
+            app:destination="@id/editServiceFragment"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"/>
         <action
             android:id="@+id/action_serviceFragment_to_profileUserFragment"
-            app:destination="@id/profileUserFragment" />
+            app:destination="@id/profileUserFragment"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"/>
     </fragment>
     <fragment
         android:id="@+id/editServiceFragment"

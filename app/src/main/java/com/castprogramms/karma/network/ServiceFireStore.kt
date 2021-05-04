@@ -93,6 +93,27 @@ class ServiceFireStore: ServiceFireStoreInterface {
         return mutableLiveData
     }
 
+    override fun getAllOtherUserServices(id: String): MutableLiveData<Resource<List<Pair<String, Service>>>> {
+        val mutableLiveData = MutableLiveData<Resource<List<Pair<String,Service>>>>(null)
+        val mutableList = mutableListOf<Pair<String, Service>>()
+        fireStore.collection(SERVICES_TAG)
+            .whereEqualTo("idAuthor", id)
+            .addSnapshotListener { value, error ->
+                if (value != null){
+                    mutableList.clear()
+                    mutableLiveData.postValue(Resource.Loading())
+                    value.documents.forEach {
+                        mutableList.add(it.id to it.toObject(Service::class.java)!!)
+                    }
+                    mutableLiveData.postValue(Resource.Success(mutableList))
+                }
+                else{
+                    mutableLiveData.postValue(Resource.Error(error?.message))
+                }
+            }
+        return mutableLiveData
+    }
+
     companion object{
         const val SERVICES_TAG = "services"
         const val USERS_TAG = "users"

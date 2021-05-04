@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.FragmentAllServicesBinding
 import com.castprogramms.karma.network.Resource
+import com.castprogramms.karma.tools.Score
 import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.ui.adapters.ServicesAdapter
 import com.google.android.material.textview.MaterialTextView
@@ -20,7 +21,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class AllServicesFragment : Fragment() {
     private val servicesViewModel : ServicesViewModel by viewModel()
     lateinit var textView: MaterialTextView
-    val adapter = ServicesAdapter{showOrHideEmpty(it)}
+    val adapter = ServicesAdapter({showOrHideEmpty(it)})
+                    { s: String, score: Score -> servicesViewModel.addScoreUser(s,score) }
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

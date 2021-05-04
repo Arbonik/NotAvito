@@ -2,7 +2,9 @@ package com.castprogramms.karma.network
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.castprogramms.karma.tools.Score
 import com.castprogramms.karma.tools.User
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
@@ -37,7 +39,11 @@ class ManageUserDataFireStore: ManageUserDataInterface {
         return mutableLiveData
     }
 
-
+    override fun addScore(id: String, score: Score) {
+        fireStore.collection(USERS_TAG)
+            .document(id)
+            .update("scores", FieldValue.arrayUnion(score))
+    }
 
     companion object{
         const val SERVICES_TAG = "services"
