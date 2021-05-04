@@ -9,8 +9,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.Transformation
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.ItemServicesBinding
@@ -48,15 +50,17 @@ class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(
     inner class ServicesViewHolder(view: View): RecyclerView.ViewHolder(view){
         val binding = ItemServicesBinding.bind(itemView)
         fun onbind(service: Service, id: String){
-            binding.cost.text = service.cost.toString() + "₽"
+            binding.cost.text = service.cost.toString()
             binding.name.text = service.name
             binding.nameAuthor.text = service.desc
             binding.time.text = TimeModule.getServiceTime(service.dataTime)
-            binding.unit.text = "/" + service.unit
+            binding.unit.text = "₽/" + service.unit
             try {
                 if (service.photo != "")
                 Glide.with(itemView)
-                        .load(service.photo).fitCenter()
+                    .load(service.photo).fitCenter()
+//                    .apply(RequestOptions.overrideOf(100,100))
+//                    .apply(RequestOptions.fitCenterTransform())
                     .addListener(object :RequestListener<Drawable>{
                         override fun onLoadFailed(
                             e: GlideException?,
@@ -67,7 +71,6 @@ class ServicesAdapter: RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(
                             binding.progressBar2.visibility = View.GONE
                             return true
                         }
-
                         override fun onResourceReady(
                             resource: Drawable?,
                             model: Any?,

@@ -28,6 +28,7 @@
     <string name="login_failed">"Login failed"</string>
 
     <string name="opt_edit">Изменить</string>
+    <string name="edit_service">Радактирование</string>
     <string name="unit_hint">Оплата за</string>
     <string name="opt_delete">Удалить</string>
     <string name="save">Запомнить</string>
@@ -46,4 +47,6 @@
     <string name="my_services">Мои услуги</string>
     <string name="service">Услуга</string>
     <string name="image_card">Добавить заявку</string>
+
+    <string name="profile_item">Профиль</string>
 </resources>

@@ -6,9 +6,10 @@ import com.castprogramms.karma.network.Repository
 import com.castprogramms.karma.network.ServiceFireStore
 import com.castprogramms.karma.ui.addServices.AddServiceViewModel
 import com.castprogramms.karma.ui.allServices.ServicesViewModel
-import com.castprogramms.karma.ui.progfile.ProfileViewModel
+import com.castprogramms.karma.ui.myService.MyServiceViewModel
 import com.castprogramms.karma.ui.insertdata.InsertDataViewModel
 import com.castprogramms.karma.ui.login.LoginViewModel
+import com.castprogramms.karma.ui.profileuser.ProfileUserViewModel
 import com.castprogramms.karma.ui.service.ServiceViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -24,9 +25,10 @@ class KarmaApplication : Application() {
         viewModel { LoginViewModel(get()) }
         viewModel { ServicesViewModel(get()) }
         viewModel { AddServiceViewModel(get()) }
-        viewModel { ProfileViewModel(get()) }
+        viewModel { MyServiceViewModel(get()) }
         viewModel { InsertDataViewModel(get()) }
         viewModel { ServiceViewModel(get()) }
+        viewModel { ProfileUserViewModel(get()) }
     }
     override fun onCreate() {
         super.onCreate()

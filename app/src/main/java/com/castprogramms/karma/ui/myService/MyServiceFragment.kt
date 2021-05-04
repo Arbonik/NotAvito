@@ -1,4 +1,4 @@
-package com.castprogramms.karma.ui.progfile
+package com.castprogramms.karma.ui.myService
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,35 +10,31 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.castprogramms.karma.R
-import com.castprogramms.karma.databinding.FragmentProfileBinding
+import com.castprogramms.karma.databinding.FragmentMyServiceBinding
 import com.castprogramms.karma.network.Resource
-import com.castprogramms.karma.ui.adapters.ProfileServicesAdapter
+import com.castprogramms.karma.ui.adapters.MyServicesAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ProfileFragment : Fragment() {
+class MyServiceFragment : Fragment() {
 
-    private val profileViewModel: ProfileViewModel by viewModel()
+    private val myServiceViewModel: MyServiceViewModel by viewModel()
     var id = "id"
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        val binding = FragmentProfileBinding.bind(view)
-        val adapter = ProfileServicesAdapter { profileViewModel.deleteService(it) }
+        val view = inflater.inflate(R.layout.fragment_my_service, container, false)
+        val binding = FragmentMyServiceBinding.bind(view)
+        val adapter = MyServicesAdapter { myServiceViewModel.deleteService(it) }
         binding.recycler.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recycler.adapter = adapter
-        profileViewModel.getUserData().observe(viewLifecycleOwner, Observer{
+        myServiceViewModel.getUserData().observe(viewLifecycleOwner, Observer{
             when(it){
-                is Resource.Error -> {
-
-                }
-                is Resource.Loading -> {
-
-                }
+                is Resource.Error -> { }
+                is Resource.Loading -> { }
                 is Resource.Success -> {
-                    profileViewModel.getAllUserServices(it.data?.first!!).observe(viewLifecycleOwner) {
+                    myServiceViewModel.getAllUserServices(it.data?.first!!).observe(viewLifecycleOwner) {
                         when(it){
                             is Resource.Error -> {}
                             is Resource.Loading -> {}

@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.ItemSliderBinding
@@ -40,6 +41,8 @@ class ServiceSliderAdapter: SliderViewAdapter<ServiceSliderAdapter.ServiceSlider
         fun bing(picture: Uri){
             Glide.with(itemView)
                 .load(picture)
+                //.apply(RequestOptions.overrideOf(100,100))
+                .apply(RequestOptions.fitCenterTransform())
                 .addListener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,

@@ -1,4 +1,4 @@
-package com.castprogramms.karma.ui.progfile
+package com.castprogramms.karma.ui.myService
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +8,7 @@ import com.castprogramms.karma.network.Resource
 import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.tools.User
 
-class ProfileViewModel(private val repository: Repository) : ViewModel() {
+class MyServiceViewModel(private val repository: Repository) : ViewModel() {
     fun getUser() = repository.userLiveData
     fun getUserData(): MutableLiveData<Resource<Pair<String, User>>> {
         var mutableLiveData = MutableLiveData<Resource<Pair<String,User>>>(null)

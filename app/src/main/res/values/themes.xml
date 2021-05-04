@@ -144,4 +144,8 @@
         <item name="android:textColor">@color/fio_norm</item>
     </style>
 
+    <style name="ProfileBackground">
+        <item name="android:background">@color/light_grey</item>
+    </style>
+
 </resources>

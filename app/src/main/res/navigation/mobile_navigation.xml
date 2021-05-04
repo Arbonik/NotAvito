@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/profileFragment">
+    app:startDestination="@id/myService">
 
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.castprogramms.karma.ui.progfile.ProfileFragment"
+        android:id="@+id/myService"
+        android:name="com.castprogramms.karma.ui.myService.MyServiceFragment"
         android:label="@string/my_services"
-        tools:layout="@layout/fragment_profile">
+        tools:layout="@layout/fragment_my_service">
         <action
             android:id="@+id/action_profileFragment_to_addServiceFragment"
             app:destination="@id/addServiceFragment"
@@ -42,7 +42,7 @@
             app:popEnterAnim="@anim/left_in"
             app:popExitAnim="@anim/right_in"
             android:id="@+id/action_addServiceFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/myService" />
     </fragment>
     <fragment
         android:id="@+id/serviceFragment"
@@ -51,10 +51,18 @@
         <action
             android:id="@+id/action_serviceFragment_to_editServiceFragment"
             app:destination="@id/editServiceFragment" />
+        <action
+            android:id="@+id/action_serviceFragment_to_profileUserFragment"
+            app:destination="@id/profileUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/editServiceFragment"
         android:name="com.castprogramms.karma.EditServiceFragment"
-        android:label="edit_service_fragment"
+        android:label="@string/edit_service"
         tools:layout="@layout/edit_service_fragment" />
+    <fragment
+        android:id="@+id/profileUserFragment"
+        android:name="com.castprogramms.karma.ui.profileuser.ProfileUserFragment"
+        android:label="@string/profile_item"
+        tools:layout="@layout/profile_user_fragment" />
 </navigation>
