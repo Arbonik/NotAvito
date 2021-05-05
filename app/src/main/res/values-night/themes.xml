@@ -83,7 +83,7 @@
     </style>
 
     <style name="ProfileBackground">
-        <item name="android:background">@color/black</item>
+        <item name="android:background">@color/tx_grey</item>
     </style>
 
 </resources>

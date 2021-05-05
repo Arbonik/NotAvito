@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
@@ -20,8 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:scaleType="center"
-            app:horizontalOffset = "200dp"
-            app:verticalOffset = "500dp"
+            app:horizontalOffset="200dp"
             app:sliderAnimationDuration="600"
             app:sliderAutoCycleDirection="back_and_forth"
             app:sliderAutoCycleEnabled="true"
@@ -34,7 +44,8 @@
             app:sliderIndicatorSelectedColor="#5A5A5A"
             app:sliderIndicatorUnselectedColor="#FFF"
             app:sliderScrollTimeInSec="1"
-            app:sliderStartAutoCycle="true" />
+            app:sliderStartAutoCycle="true"
+            app:verticalOffset="500dp" />
 
 
     </com.google.android.material.card.MaterialCardView>
@@ -43,11 +54,9 @@
         android:id="@+id/name_show_serv_cont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
-        android:gravity="center_vertical"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView">
@@ -55,22 +64,24 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/name_show_serv"
             style="@style/TextNormalTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:textSize="26sp"
-            android:layout_gravity="left|center_vertical"
+            android:layout_gravity="start|top"
+            android:layout_weight="10"
+            android:textSize="24sp"
             tools:text="Фотограф" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/cost_show_serv"
             style="@style/TextNormalTitle"
+            android:layout_weight="0.2"
             android:maxLines="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right|center_vertical"
-            android:textSize="22sp"
-            tools:text="233" />
+            android:layout_gravity="end|top"
+            android:paddingStart="12dp"
+            android:textSize="20sp"
+            tools:text="23323/4refff" />
 
     </LinearLayout>
 
@@ -79,8 +90,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginTop="14dp"
+        android:layout_marginEnd="24dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_show_serv_cont">
@@ -90,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/desc_op"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="normal" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -99,28 +110,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:maxLines="2"
             android:visibility="visible"
-            tools:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes" />
+            android:lineHeight="20sp"
+            tools:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes"
+            tools:targetApi="p" />
 
     </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/profileView"
+        style="@style/ProfileBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        style="@style/ProfileBackground"
-        android:padding="8dp"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/icon_user"
-            android:layout_marginStart="24dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginStart="24dp"
             android:layout_marginEnd="12dp"
             android:src="@drawable/male_user" />
 
@@ -145,15 +159,6 @@
                 tools:text="345765" />
 
         </LinearLayout>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/good_but"
-            android:layout_marginRight="24dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/thumb_up_24"/>
 
     </RelativeLayout>
 
@@ -182,17 +187,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/call"
-        style="@style/GreenMaterialButtonFill"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/fio_norm"
-        android:text="@string/call"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/call"
+                style="@style/GreenMaterialButtonFill"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/fio_norm"
+                android:text="@string/call"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+</ScrollView>

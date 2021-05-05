@@ -49,9 +49,6 @@
                     android:textSize="30sp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/main.appbar"
                     tools:text="Фотограф" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -61,12 +58,9 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:layout_gravity="center_horizontal"
-                    android:text="s;lcj sdkl akjcjh kk scj"
+                    android:text="@string/profile_desc"
                     android:layout_marginTop="6dp"
-                    android:layout_marginBottom="6dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/name_user_profile" />
+                    android:layout_marginBottom="6dp" />
 
             </LinearLayout>
 
@@ -80,10 +74,7 @@
                 android:layout_gravity="bottom"
                 android:layout_height="46dp"
                 style="@style/BackgroundDayNight_normal"
-                app:layout_collapseMode="pin"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/desc_user_profile">
+                app:layout_collapseMode="pin">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
@@ -105,11 +96,17 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/myRecService_profile"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tabLayout_profile" />
+            android:layout_height="match_parent" />
 
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/thumb_up_off_alt_24"
+        android:contentDescription="@string/add_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

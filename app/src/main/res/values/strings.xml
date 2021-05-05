@@ -50,6 +50,7 @@
     <string name="image_card">Добавить заявку</string>
 
     <string name="profile_item">Профиль</string>
+    <string name="profile_desc">Краткая информация о продавце</string>
 
     <string name="search">Поиск</string>
     <string name="empty">По вашему запросу ничего не найдено</string>
