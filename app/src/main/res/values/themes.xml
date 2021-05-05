@@ -45,7 +45,7 @@
     <style name="BackgroundDayNight_normal">
         <item name="android:background">@color/white</item>
         <item name="tabSelectedTextColor">@color/tx_grey</item>
-        <item name="tabTextColor">#888888</item>
+        <item name="tabIndicatorColor">@color/fio_norm</item>
     </style>
 
     <style name="FioMaterialEditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

@@ -62,8 +62,8 @@
 
     <style name="BackgroundDayNight_normal">
         <item name="android:background">@color/black</item>
-        <item name="tabSelectedTextColor">@color/tx_grey</item>
-        <item name="tabTextColor">#888888</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabIndicatorColor">@color/fio_norm</item>
     </style>
 
     <style name="BackgroundRecyclerView">
@@ -71,7 +71,6 @@
     </style>
 
     <style name="MaterialAlertDialog_OK_color" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <!-- Style for positive button -->
         <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle.textColor</item>
         <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle.textColor</item>
     </style>
