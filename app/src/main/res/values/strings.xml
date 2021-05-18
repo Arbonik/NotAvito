@@ -54,4 +54,10 @@
 
     <string name="search">Поиск</string>
     <string name="empty">По вашему запросу ничего не найдено</string>
+    <string name="not_equals">Пароли не сопадают</string>
+    <string name="wrong_number_size">Номер должен состоять из 11 цифр</string>
+    <string name="wrong_number">Неверный номер телефона</string>
+    <string name="wrong_email">Неверный адрес электронной почты</string>
+    <string name="wrong_name">Введите имя</string>
+    <string name="wrong_family">Введите фамилию</string>
 </resources>

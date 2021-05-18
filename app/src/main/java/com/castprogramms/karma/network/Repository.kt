@@ -1,6 +1,5 @@
 package com.castprogramms.karma.network
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.castprogramms.karma.data.Result
 import com.castprogramms.karma.tools.Score
@@ -38,16 +37,16 @@ class Repository(private val serviceFireStore: ServiceFireStore,
 
     fun addUser(user: User, email: String, password: String){
         var id = ""
+        userLiveData.postValue(Result.Loading())
         fireBaseAuthenticator.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener {
-                if (it.isSuccessful){
-                    if (it.result != null){
-                        id = it.result?.user!!.uid
-                        userLiveData.postValue(Result.Auth(it.result?.user!!))
-                        this.user = it.result?.user
-                    }
-                }
-            }.continueWith {
+            .addOnSuccessListener {
+                id = it.user!!.uid
+                userLiveData.postValue(Result.Auth(it.user!!))
+            }
+            .addOnFailureListener {
+                userLiveData.postValue(Result.Fail(it.message))
+            }
+            .continueWith {
                 if (id != "")
                     manageUserDataFireStore.addUser(user, id)
             }

@@ -3,6 +3,7 @@ package com.castprogramms.karma
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.lifecycle.observe
@@ -20,6 +21,7 @@ class RegistrationActivity : AppCompatActivity() {
         supportActionBar?.hide()
         repository.userLiveData.observe(this) {
             if (it != null && it is Result.Enter){
+                Log.e("size", it.toString())
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }

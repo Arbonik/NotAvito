@@ -78,10 +78,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     is Result.Loading ->{
                         binding.loading.visibility = View.VISIBLE
                     }
-                    is Result.Auth -> {
-                        binding.loading.visibility = View.GONE
-                        updateUiWithUser((LoggedInUserView(it.data?.providerId!!, it.data.uid, true)))
-                    }
+                    is Result.Auth -> {}
                     is Result.Enter -> {
                         binding.loading.visibility = View.GONE
                         updateUiWithUser(LoggedInUserView(it.data?.providerId!!, it.data.uid, false))
@@ -106,7 +103,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun showLoginFailed(errorString: String) {
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext,
-//            "Такого пользователя не существует"
             errorString
             , Toast.LENGTH_LONG).show()
     }

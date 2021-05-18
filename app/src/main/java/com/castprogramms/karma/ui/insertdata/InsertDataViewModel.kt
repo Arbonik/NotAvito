@@ -6,4 +6,5 @@ import com.castprogramms.karma.tools.User
 
 class InsertDataViewModel(private val repository: Repository): ViewModel() {
     fun addUser(user: User, email: String, password: String) = repository.addUser(user, email, password)
+    fun getUser() = repository.userLiveData
 }
