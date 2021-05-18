@@ -42,7 +42,7 @@ class ServiceSliderAdapter: SliderViewAdapter<ServiceSliderAdapter.ServiceSlider
             Glide.with(itemView)
                 .load(picture)
                 //.apply(RequestOptions.overrideOf(100,100))
-                .apply(RequestOptions.fitCenterTransform())
+                .fitCenter()
                 .addListener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,

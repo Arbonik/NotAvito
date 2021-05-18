@@ -4,7 +4,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.castprogramms.karma.R
@@ -39,7 +38,7 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                         serviceViewModel.loadUserData(service.idAuthor)
                         this.idAuthor = service.idAuthor
                         binding.nameShowServ.text = service.name
-                        binding.costShowServ.text = service.cost.toString() + "₽/" + service.unit.toString()
+                        binding.costShowServ.text = service.cost.toString() + "₽/" + service.unit
                         binding.descShowServ.text = service.desc
                         binding.imageSlider.setSliderAdapter(ServiceSliderAdapter().apply {
                             setUris(listOf(Uri.parse(service.photo)))
@@ -66,8 +65,9 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                     }
                 }
         }
+        binding.imageSlider
         binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
-        binding.imageSlider.scrollTimeInSec = 4
+        binding.imageSlider.scrollTimeInSec = 1
         binding.imageSlider.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
         binding.imageSlider.startAutoCycle()
 
