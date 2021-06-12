@@ -26,21 +26,21 @@
         <item name="android:background">@color/light_grey</item>
     </style>
 
-    <style name="TextNormalTitle">
-        <item name="android:elevation">100dp</item>
-        <item name="android:textColor">@color/tx_grey</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">54sp</item>
-        <item name="android:letterSpacing">0.01</item>
-    </style>
+        <style name="TextNormalTitle">
+            <item name="android:elevation">100dp</item>
+            <item name="android:textColor">@color/tx_grey</item>
+            <item name="android:textStyle">bold</item>
+            <item name="android:textSize">54sp</item>
+            <item name="android:letterSpacing">0.01</item>
+        </style>
 
-    <style name="TextNormalBody">
-        <item name="android:elevation">102dp</item>
-        <item name="android:textColor">@color/tx_grey</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:letterSpacing">0.02</item>
-    </style>
+        <style name="TextNormalBody">
+            <item name="android:elevation">102dp</item>
+            <item name="android:textColor">@color/tx_grey</item>
+            <item name="android:textStyle">normal</item>
+            <item name="android:textSize">14sp</item>
+            <item name="android:letterSpacing">0.02</item>
+        </style>
 
     <style name="BackgroundDayNight_normal">
         <item name="android:background">@color/white</item>

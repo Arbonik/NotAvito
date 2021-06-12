@@ -1,10 +1,10 @@
 package com.castprogramms.karma.ui.profileuser
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.ProfileUserFragmentBinding
@@ -30,7 +30,7 @@ class ProfileUserFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.profile_user_fragment, container, false)
         val binding = ProfileUserFragmentBinding.bind(view)
-        val adapter = ServicesAdapter({}, { id, score -> })
+        val adapter = ServicesAdapter({}, {_,_ ->  })
         binding.myRecServiceProfile.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.myRecServiceProfile.adapter = adapter
 
@@ -59,7 +59,7 @@ class ProfileUserFragment : Fragment() {
         return view
     }
 
-    fun getListServices(list: List<Pair<String, Service>>): Pair<MutableList<Service>, MutableList<String>> {
+    private fun getListServices(list: List<Pair<String, Service>>): Pair<MutableList<Service>, MutableList<String>> {
         val mutableList = mutableListOf<Service>()
         val ids = mutableListOf<String>()
         list.forEach {
@@ -69,7 +69,7 @@ class ProfileUserFragment : Fragment() {
         return mutableList to ids
     }
 
-    fun countScores(scores: List<Score>): Int {
+    private fun countScores(scores: List<Score>): Int{
         var sum = 0
         scores.forEach {
             sum += it.value

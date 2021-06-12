@@ -2,8 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
     <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/news"
+            android:icon="@drawable/news"
+            android:title="@string/news"/>
         <item
             android:id="@+id/myService"
             android:icon="@drawable/person_24"
@@ -12,5 +15,13 @@
             android:id="@+id/allServicesFragment"
             android:icon="@drawable/shopping_basket_24"
             android:title="@string/all_service" />
+        <item
+            android:id="@+id/donats"
+            android:icon="@drawable/donats"
+            android:title="@string/donats"/>
+        <item
+            android:id="@+id/faq"
+            android:icon="@drawable/info"
+            android:title="@string/faq"/>
     </group>
 </menu>

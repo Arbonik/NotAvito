@@ -2,6 +2,7 @@ package com.castprogramms.karma.network
 
 import androidx.lifecycle.MutableLiveData
 import com.castprogramms.karma.data.Result
+import com.castprogramms.karma.tools.New
 import com.castprogramms.karma.tools.Score
 import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.tools.User
@@ -9,7 +10,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class Repository(private val serviceFireStore: ServiceFireStore,
-                 private val manageUserDataFireStore: ManageUserDataFireStore) {
+                 private val manageUserDataFireStore: ManageUserDataFireStore,
+                 private val newsFireStore: NewsFireStore) {
     private val fireBaseAuthenticator = FirebaseAuth.getInstance()
     val userLiveData = MutableLiveData<Result<FirebaseUser>>(null)
     var user : FirebaseUser? = null
@@ -60,4 +62,9 @@ class Repository(private val serviceFireStore: ServiceFireStore,
     fun deleteService(service: Service) = serviceFireStore.deleteService(service)
     fun getService(id: String) = serviceFireStore.getService(id)
     fun getAllOtherUserServices(id: String) = serviceFireStore.getAllOtherUserServices(id)
+
+
+    //news
+    fun addNew(new: New) = newsFireStore.addNew(new)
+    fun getAllNews() = newsFireStore.getAllNews()
 }

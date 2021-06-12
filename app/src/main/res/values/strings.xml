@@ -60,4 +60,7 @@
     <string name="wrong_email">Неверный адрес электронной почты</string>
     <string name="wrong_name">Введите имя</string>
     <string name="wrong_family">Введите фамилию</string>
+    <string name="news">Новости</string>
+    <string name="donats">Пожертвования</string>
+    <string name="faq">О создателях</string>
 </resources>

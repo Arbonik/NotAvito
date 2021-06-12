@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@id/myService">
-
+    <fragment
+        android:id="@+id/news"
+        android:name="com.castprogramms.karma.ui.news.NewsFragment"
+        android:label="NewsFragment"
+        tools:layout="@layout/fragment_news"/>
     <fragment
         android:id="@+id/myService"
         android:name="com.castprogramms.karma.ui.myService.MyServiceFragment"
@@ -35,7 +39,8 @@
     <fragment
         android:id="@+id/addServiceFragment"
         android:name="com.castprogramms.karma.ui.addServices.AddServiceFragment"
-        android:label="@string/new_service">
+        android:label="@string/new_service"
+        tools:layout="@layout/fragment_add_service">
         <action
             app:enterAnim="@anim/left_out"
             app:exitAnim="@anim/right_out"
@@ -47,7 +52,8 @@
     <fragment
         android:id="@+id/serviceFragment"
         android:name="com.castprogramms.karma.ui.service.ServiceFragment"
-        android:label="@string/service" >
+        android:label="@string/service"
+        tools:layout="@layout/fragment_service">
         <action
             android:id="@+id/action_serviceFragment_to_editServiceFragment"
             app:destination="@id/editServiceFragment"

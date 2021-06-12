@@ -11,11 +11,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.lifecycle.observe
-import androidx.navigation.fragment.findNavController
 import com.castprogramms.karma.MainActivity
 import com.castprogramms.karma.R
 import com.castprogramms.karma.data.Result
