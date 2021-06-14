@@ -11,7 +11,8 @@ import com.google.firebase.auth.FirebaseUser
 
 class Repository(private val serviceFireStore: ServiceFireStore,
                  private val manageUserDataFireStore: ManageUserDataFireStore,
-                 private val newsFireStore: NewsFireStore) {
+                 private val newsFireStore: NewsFireStore,
+                 private val settingsFireStore: SettingsFireStore) {
     private val fireBaseAuthenticator = FirebaseAuth.getInstance()
     val userLiveData = MutableLiveData<Result<FirebaseUser>>(null)
     var user : FirebaseUser? = null
@@ -67,4 +68,7 @@ class Repository(private val serviceFireStore: ServiceFireStore,
     //news
     fun addNew(new: New) = newsFireStore.addNew(new)
     fun getAllNews() = newsFireStore.getAllNews()
+
+    //info
+    fun getInfo() = settingsFireStore.getInfoAboutCreators()
 }

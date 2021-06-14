@@ -1,12 +1,10 @@
 package com.castprogramms.karma
 
 import android.app.Application
-import com.castprogramms.karma.network.ManageUserDataFireStore
-import com.castprogramms.karma.network.NewsFireStore
-import com.castprogramms.karma.network.Repository
-import com.castprogramms.karma.network.ServiceFireStore
+import com.castprogramms.karma.network.*
 import com.castprogramms.karma.ui.addServices.AddServiceViewModel
 import com.castprogramms.karma.ui.allServices.ServicesViewModel
+import com.castprogramms.karma.ui.info.InfoViewModel
 import com.castprogramms.karma.ui.myService.MyServiceViewModel
 import com.castprogramms.karma.ui.insertdata.InsertDataViewModel
 import com.castprogramms.karma.ui.login.LoginViewModel
@@ -25,7 +23,8 @@ class KarmaApplication : Application() {
         single { ServiceFireStore() }
         single { ManageUserDataFireStore() }
         single { NewsFireStore() }
-        single { Repository(get(), get(), get()) }
+        single { SettingsFireStore() }
+        single { Repository(get(), get(), get(), get()) }
         viewModel { LoginViewModel(get()) }
         viewModel { ServicesViewModel(get()) }
         viewModel { AddServiceViewModel(get()) }
@@ -34,6 +33,7 @@ class KarmaApplication : Application() {
         viewModel { ServiceViewModel(get()) }
         viewModel { ProfileUserViewModel(get()) }
         viewModel { NewsViewModel(get()) }
+        viewModel { InfoViewModel(get()) }
     }
     override fun onCreate() {
         super.onCreate()

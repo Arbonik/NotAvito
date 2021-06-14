@@ -79,4 +79,8 @@
         android:name="com.castprogramms.karma.ui.profileuser.ProfileUserFragment"
         android:label="@string/profile_item"
         tools:layout="@layout/profile_user_fragment" />
+    <fragment
+        android:id="@+id/faq"
+        android:name="com.castprogramms.karma.ui.info.InfoFragment"
+        android:label="@string/info" />
 </navigation>

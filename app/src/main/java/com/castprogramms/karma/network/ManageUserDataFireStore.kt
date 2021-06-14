@@ -46,7 +46,6 @@ class ManageUserDataFireStore: ManageUserDataInterface {
     }
 
     companion object{
-        const val SERVICES_TAG = "services"
         const val USERS_TAG = "users"
     }
 }
