@@ -14,6 +14,7 @@ import com.castprogramms.karma.data.Result
 import com.castprogramms.karma.databinding.NavHeaderMainBinding
 import com.castprogramms.karma.network.Repository
 import com.castprogramms.karma.network.Resource
+import com.castprogramms.karma.tools.Score
 import com.google.android.material.navigation.NavigationView
 import org.koin.android.ext.android.inject
 
@@ -39,8 +40,10 @@ class MainActivity : AppCompatActivity() {
                                 is Resource.Error -> {}
                                 is Resource.Loading -> {}
                                 is Resource.Success -> {
-                                    if (it.data != null)
+                                    if (it.data != null) {
+                                        binding.scores.text = countScores(it.data.second.scores)
                                         binding.nameUser.text = it.data.second.name
+                                    }
                                 }
                             }
                         }
@@ -49,15 +52,13 @@ class MainActivity : AppCompatActivity() {
                     is Result.Enter -> {
                         repository.getUser(it.data?.uid!!).observe(this) {
                             when(it){
-                                is Resource.Error -> {
-
-                                }
-                                is Resource.Loading -> {
-
-                                }
+                                is Resource.Error -> {}
+                                is Resource.Loading -> {}
                                 is Resource.Success -> {
-                                    if (it.data != null)
+                                    if (it.data != null) {
+                                        binding.scores.text = countScores(it.data.second.scores)
                                         binding.nameUser.text = it.data.second.getFullName()
+                                    }
                                 }
                             }
                         }
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         }
         val navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(setOf(
-               R.id.news, R.id.myService, R.id.allServicesFragment, 0, R.id.faq), drawerLayout)
+               R.id.news, R.id.myService, R.id.allServicesFragment, R.id.donats, R.id.faq), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -76,5 +77,17 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun countScores(list: List<Score>): String {
+        var summary = 0
+        list.forEach { summary += it.value }
+        if (summary > 0)
+            return resources.getString(R.string.scores) + " +" + summary.toString()
+        else
+            if (summary < 0)
+                return resources.getString(R.string.scores) + " -" + summary.toString()
+            else
+                return resources.getString(R.string.scores) + " " + summary.toString()
     }
 }

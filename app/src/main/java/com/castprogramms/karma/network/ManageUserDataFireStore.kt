@@ -20,6 +20,17 @@ class ManageUserDataFireStore: ManageUserDataInterface {
         fireStore.collection(USERS_TAG)
             .document(id)
             .set(user)
+            .continueWith {
+                var score = 0
+                fireStore.collection(SettingsFireStore.SETTINGS_TAG)
+                    .document(SettingsFireStore.INFO_TAG)
+                    .get().addOnSuccessListener {
+                        if (it.getLong("startCoin") != null)
+                            score = it.getLong("startCoin")!!.toInt()
+                    }.continueWith {
+                        addScore(id, Score(score))
+                    }
+            }
     }
 
     override fun getUser(id: String): MutableLiveData<Resource<Pair<String, User>>> {

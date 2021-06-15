@@ -4,6 +4,7 @@ import android.app.Application
 import com.castprogramms.karma.network.*
 import com.castprogramms.karma.ui.addServices.AddServiceViewModel
 import com.castprogramms.karma.ui.allServices.ServicesViewModel
+import com.castprogramms.karma.ui.donat.DonatViewModel
 import com.castprogramms.karma.ui.info.InfoViewModel
 import com.castprogramms.karma.ui.myService.MyServiceViewModel
 import com.castprogramms.karma.ui.insertdata.InsertDataViewModel
@@ -34,6 +35,7 @@ class KarmaApplication : Application() {
         viewModel { ProfileUserViewModel(get()) }
         viewModel { NewsViewModel(get()) }
         viewModel { InfoViewModel(get()) }
+        viewModel { DonatViewModel(get()) }
     }
     override fun onCreate() {
         super.onCreate()

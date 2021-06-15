@@ -64,4 +64,6 @@
     <string name="donats">Пожертвования</string>
     <string name="faq">О создателях</string>
     <string name="info">О создателях</string>
+    <string name="scoresTyt">Здесь будут баллы челика</string>
+    <string name="scores">Карма: </string>
 </resources>

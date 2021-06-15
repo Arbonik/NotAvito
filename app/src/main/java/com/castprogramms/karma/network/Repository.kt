@@ -55,15 +55,17 @@ class Repository(private val serviceFireStore: ServiceFireStore,
             }
     }
 
+    //user
     fun addScoreUser(id: String, score: Score) = manageUserDataFireStore.addScore(id, score)
+    fun getUser(id: String) = manageUserDataFireStore.getUser(id)
+
+    //service
     fun addService(service: Service) = serviceFireStore.addService(service)
     fun getAllServices() = serviceFireStore.getAllService()
     fun getAllUserServices(id: String) = serviceFireStore.getAllUserServices(id)
-    fun getUser(id: String) = manageUserDataFireStore.getUser(id)
     fun deleteService(service: Service) = serviceFireStore.deleteService(service)
     fun getService(id: String) = serviceFireStore.getService(id)
     fun getAllOtherUserServices(id: String) = serviceFireStore.getAllOtherUserServices(id)
-
 
     //news
     fun addNew(new: New) = newsFireStore.addNew(new)
@@ -71,4 +73,5 @@ class Repository(private val serviceFireStore: ServiceFireStore,
 
     //info
     fun getInfo() = settingsFireStore.getInfoAboutCreators()
+    fun getInfoAboutDonat() = settingsFireStore.getInfoAboutDonat()
 }

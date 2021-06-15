@@ -42,4 +42,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle" />
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextNormalBody"
+        android:text="@string/scoresTyt"
+        android:id="@+id/scores"/>
 </LinearLayout>

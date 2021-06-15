@@ -17,12 +17,23 @@ class SettingsFireStore: SettingsInterface {
         fireStore.collection(SETTINGS_TAG)
             .document(INFO_TAG)
             .addSnapshotListener { value, error ->
-                if (value != null){
+                if (value != null)
                     mutableLiveData.postValue(Resource.Success(value.getString("about").toString()))
-                }
-                else{
+                else
                     mutableLiveData.postValue(Resource.Error(error?.message))
-                }
+            }
+        return mutableLiveData
+    }
+
+    override fun getInfoAboutDonat(): MutableLiveData<Resource<String>> {
+        val mutableLiveData = MutableLiveData<Resource<String>>(Resource.Loading())
+        fireStore.collection(SETTINGS_TAG)
+            .document(INFO_TAG)
+            .addSnapshotListener { value, error ->
+                if (value != null)
+                    mutableLiveData.postValue(Resource.Success(value.getString("donat").toString()))
+                else
+                    mutableLiveData.postValue(Resource.Error(error?.message))
             }
         return mutableLiveData
     }
