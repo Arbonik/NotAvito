@@ -78,7 +78,15 @@
         android:id="@+id/profileUserFragment"
         android:name="com.castprogramms.karma.ui.profileuser.ProfileUserFragment"
         android:label="@string/profile_item"
-        tools:layout="@layout/profile_user_fragment" />
+        tools:layout="@layout/profile_user_fragment" >
+        <action
+            android:id="@+id/action_profileUserFragment_to_serviceFragment"
+            app:destination="@id/serviceFragment"
+            app:enterAnim="@anim/left_out"
+            app:exitAnim="@anim/right_out"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/right_in"/>
+    </fragment>
     <fragment
         android:id="@+id/donats"
         android:name="com.castprogramms.karma.ui.donat.DonatFragment"

@@ -21,8 +21,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class AllServicesFragment : Fragment() {
     private val servicesViewModel : ServicesViewModel by viewModel()
     lateinit var textView: MaterialTextView
-    val adapter = ServicesAdapter({showOrHideEmpty(it)})
-                    { s: String, score: Score -> servicesViewModel.addScoreUser(s,score) }
+    val adapter = ServicesAdapter({showOrHideEmpty(it)},
+        { s: String, score: Score -> servicesViewModel.addScoreUser(s,score) })
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

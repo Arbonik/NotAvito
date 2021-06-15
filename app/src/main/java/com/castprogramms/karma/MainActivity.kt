@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    fun countScores(list: List<Score>): String {
+    private fun countScores(list: List<Score>): String {
         var summary = 0
         list.forEach { summary += it.value }
         if (summary > 0)

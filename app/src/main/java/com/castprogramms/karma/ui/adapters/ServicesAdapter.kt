@@ -25,7 +25,8 @@ import com.castprogramms.karma.tools.time.TimeModule
 import com.squareup.picasso.Picasso
 import java.lang.Exception
 
-class ServicesAdapter(val showEmpty: (boolean: Boolean) -> Unit,val addScope: (id: String, score:Score) -> Unit) : RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(), Filterable {
+class ServicesAdapter(val showEmpty: (boolean: Boolean) -> Unit,val addScope: (id: String, score:Score) -> Unit, val isProfile : Boolean = false)
+    : RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>(), Filterable {
     var services = mutableListOf<Service>()
     var ids = mutableListOf<String>()
     var sortedServices = mutableListOf<Service>()
@@ -65,11 +66,7 @@ class ServicesAdapter(val showEmpty: (boolean: Boolean) -> Unit,val addScope: (i
             binding.time.text = TimeModule.getServiceTime(service.dataTime)
             binding.unit.text = "₽/" + service.unit
             try {
-                if (service.photo != "")
-                Glide.with(itemView)
-                    .load(service.photo).fitCenter()
-//                    .apply(RequestOptions.overrideOf(100,100))
-//                    .apply(RequestOptions.fitCenterTransform())
+                Glide.with(itemView).load(service.photo).fitCenter()
                     .addListener(object :RequestListener<Drawable>{
                         override fun onLoadFailed(
                             e: GlideException?,
@@ -77,6 +74,7 @@ class ServicesAdapter(val showEmpty: (boolean: Boolean) -> Unit,val addScope: (i
                             target: Target<Drawable>?,
                             isFirstResource: Boolean,
                         ): Boolean {
+                            binding.photo.setImageDrawable(itemView.context.resources.getDrawable(R.drawable.no_photo))
                             binding.progressBar2.visibility = View.GONE
                             return true
                         }
@@ -91,10 +89,7 @@ class ServicesAdapter(val showEmpty: (boolean: Boolean) -> Unit,val addScope: (i
                             binding.progressBar2.visibility = View.GONE
                             return true
                         }
-                    })
-                        .into(binding.photo)
-                else
-                    binding.progressBar2.visibility = View.GONE
+                    }).into(binding.photo)
             }catch (e: Exception){
                 Picasso.get()
                     .load(R.drawable.ic_launcher_foreground)
@@ -103,7 +98,10 @@ class ServicesAdapter(val showEmpty: (boolean: Boolean) -> Unit,val addScope: (i
             binding.root.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putString("id", id)
-                itemView.findNavController().navigate(R.id.action_allServicesFragment_to_serviceFragment, bundle)
+                if (!isProfile)
+                    itemView.findNavController().navigate(R.id.action_allServicesFragment_to_serviceFragment, bundle)
+                else
+                    itemView.findNavController().navigate(R.id.action_profileUserFragment_to_serviceFragment, bundle)
             }
         }
     }
