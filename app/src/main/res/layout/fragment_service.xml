@@ -1,207 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="6dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp">
-
-        <com.smarteist.autoimageslider.SliderView
-            android:id="@+id/imageSlider"
-            android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:scaleType="center"
-            app:horizontalOffset="200dp"
-            app:sliderAnimationDuration="600"
-            app:sliderAutoCycleDirection="back_and_forth"
-            app:sliderAutoCycleEnabled="true"
-            app:sliderIndicatorAnimationDuration="600"
-            app:sliderIndicatorGravity="center_horizontal|bottom"
-            app:sliderIndicatorMargin="15dp"
-            app:sliderIndicatorOrientation="horizontal"
-            app:sliderIndicatorPadding="3dp"
-            app:sliderIndicatorRadius="2dp"
-            app:sliderIndicatorSelectedColor="#5A5A5A"
-            app:sliderIndicatorUnselectedColor="#FFF"
-            app:sliderScrollTimeInSec="1"
-            app:sliderStartAutoCycle="true"
-            app:verticalOffset="500dp" />
-
-
-    </com.google.android.material.card.MaterialCardView>
-
     <LinearLayout
-        android:id="@+id/name_show_serv_cont"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/name_show_serv"
-            style="@style/TextNormalTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start|top"
-            android:layout_weight="10"
-            android:textSize="24sp"
-            tools:text="Фотограф" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/cost_show_serv"
-            style="@style/TextNormalTitle"
-            android:layout_weight="0.2"
-            android:maxLines="2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|top"
-            android:paddingStart="12dp"
-            android:textSize="20sp"
-            tools:text="23323/4refff" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="24dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_show_serv_cont">
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/TextNormalTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/desc_op"
-            android:textSize="18sp"
-            android:textStyle="normal" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/desc_show_serv"
-            style="@style/TextNormalBody"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:visibility="visible"
-            android:lineHeight="20sp"
-            tools:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes"
-            tools:targetApi="p" />
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/profileView"
-        style="@style/ProfileBackground"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:padding="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/icon_user"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="12dp"
-            android:src="@drawable/male_user" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/icon_user"
-            android:orientation="vertical">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/name_user"
-                style="@style/TextNormalBody"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Vasili" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/number_user"
-                style="@style/TextNormalBody"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="345765" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="24dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="24dp" />
-
-    <ProgressBar
-        android:id="@+id/allProgressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateTint="@color/purple_200"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
 
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/call"
-                style="@style/GreenMaterialButtonFill"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/fio_norm"
-                android:text="@string/call"
-                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="6dp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="16dp">
+
+                <com.smarteist.autoimageslider.SliderView
+                    android:id="@+id/imageSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:scaleType="center"
+                    app:horizontalOffset="200dp"
+                    app:sliderAnimationDuration="600"
+                    app:sliderAutoCycleDirection="back_and_forth"
+                    app:sliderAutoCycleEnabled="true"
+                    app:sliderIndicatorAnimationDuration="600"
+                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                    app:sliderIndicatorMargin="15dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="2dp"
+                    app:sliderIndicatorSelectedColor="#5A5A5A"
+                    app:sliderIndicatorUnselectedColor="#FFF"
+                    app:sliderScrollTimeInSec="1"
+                    app:sliderStartAutoCycle="true"
+                    app:verticalOffset="500dp" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:id="@+id/name_show_serv_cont"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/name_show_serv"
+                    style="@style/TextNormalTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|top"
+                    android:layout_weight="10"
+                    android:textSize="24sp"
+                    tools:text="Фотограф" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cost_show_serv"
+                    style="@style/TextNormalTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|top"
+                    android:layout_weight="0.2"
+                    android:maxLines="2"
+                    android:paddingStart="12dp"
+                    android:textSize="20sp"
+                    tools:text="23323/4refff" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_show_serv_cont">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextNormalTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/desc_op"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/desc_show_serv"
+                    style="@style/TextNormalBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:lineHeight="20sp"
+                    android:visibility="visible"
+                    tools:targetApi="p"
+                    tools:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/profileView"
+                style="@style/ProfileBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:padding="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </LinearLayout>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/icon_user"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/male_user" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/icon_user"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/name_user"
+                        style="@style/TextNormalBody"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Vasili" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/number_user"
+                        style="@style/TextNormalBody"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="345765" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <include
+                android:layout_marginEnd="24dp"
+                android:id="@+id/like_buttons"
+                layout="@layout/buttons_for_evaluate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/profileView"
+                app:layout_constraintEnd_toEndOf="@id/profileView"
+                app:layout_constraintTop_toTopOf="@id/profileView"
+
+                />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="24dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="24dp" />
+
+            <ProgressBar
+                android:id="@+id/allProgressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/purple_200"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/call"
+            style="@style/GreenMaterialButtonFill"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/fio_norm"
+            android:text="@string/call"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
 </ScrollView>

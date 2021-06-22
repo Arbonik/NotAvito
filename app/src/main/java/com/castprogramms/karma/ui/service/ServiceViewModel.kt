@@ -7,7 +7,9 @@ import com.castprogramms.karma.network.Resource
 import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.tools.User
 
-class ServiceViewModel(private val repository: Repository): ViewModel() {
+class ServiceViewModel(
+    private val repository: Repository
+    ): ViewModel() {
     var liveDataService = MutableLiveData<Resource<Service>>(null)
     var liveDataUserData = MutableLiveData<Resource<Pair<String,User>>>(null)
     fun loadService(id: String) {
