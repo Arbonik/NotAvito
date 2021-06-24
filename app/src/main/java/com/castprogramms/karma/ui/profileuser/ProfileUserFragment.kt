@@ -52,6 +52,7 @@ class ProfileUserFragment : Fragment() {
                     val user = it.data?.second
                     if (user != null) {
                         binding.nameUserProfile.text = user.getFullName()
+                        binding.descUserProfile.text = "Карма: " + user.scores.toString()
                     }
                 }
             }
