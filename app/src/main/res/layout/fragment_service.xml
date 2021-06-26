@@ -169,9 +169,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@id/profileView"
                 app:layout_constraintEnd_toEndOf="@id/profileView"
-                app:layout_constraintTop_toTopOf="@id/profileView"
-
-                />
+                app:layout_constraintTop_toTopOf="@id/profileView"/>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"

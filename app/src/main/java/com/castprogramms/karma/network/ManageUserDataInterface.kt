@@ -9,5 +9,5 @@ interface ManageUserDataInterface {
 
     fun getUser(id: String): MutableLiveData<Resource<Pair<String, User>>>
 
-    fun addScore(id: String, score: Score)
+    fun addScore(id: String, score: Score): MutableLiveData<Resource<String>>
 }

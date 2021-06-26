@@ -28,7 +28,7 @@ class ManageUserDataFireStore: ManageUserDataInterface {
                         if (it.getLong("startCoin") != null)
                             score = it.getLong("startCoin")!!.toInt()
                     }.continueWith {
-                        addScore(id, Score(score))
+                        addScore(id, Score(score, "Регестрация"))
                     }
             }
     }
@@ -50,10 +50,33 @@ class ManageUserDataFireStore: ManageUserDataInterface {
         return mutableLiveData
     }
 
-    override fun addScore(id: String, score: Score) {
-        fireStore.collection(USERS_TAG)
-            .document(id)
-            .update("scores", FieldValue.arrayUnion(score))
+    override fun addScore(id: String, score: Score): MutableLiveData<Resource<String>> {
+        val mutableLiveData = MutableLiveData<Resource<String>>(Resource.Loading())
+        var scores = listOf<HashMap<String, String>>()
+        var isContains = false
+        fireStore.collection(USERS_TAG).document(id)
+            .get()
+            .addOnSuccessListener {
+                if (it.get("scores") != null) {
+                    scores = (it.get("scores")) as List<HashMap<String, String>>
+                    isContains = (scores.find { it.get("idSender") == score.idSender && it.get("idService") == score.idService} != null)
+                }
+            }.continueWith {
+                if (!isContains){
+                    fireStore.collection(USERS_TAG)
+                        .document(id)
+                        .update("scores", FieldValue.arrayUnion(score))
+                    mutableLiveData.postValue(Resource.Success("Вы успешно поставили оценку"))
+                }
+                else
+                    mutableLiveData.postValue(Resource.Error("Вы уже ставили оценку"))
+                if (score.idService != "Регестрация"){
+                    fireStore.collection(USERS_TAG)
+                        .document(score.idSender)
+                        .update("scores", FieldValue.arrayUnion(Score(10, score.idService, score.idSender)))
+                }
+            }
+        return mutableLiveData
     }
 
     companion object{

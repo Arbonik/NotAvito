@@ -52,7 +52,7 @@ class ProfileUserFragment : Fragment() {
                     val user = it.data?.second
                     if (user != null) {
                         binding.nameUserProfile.text = user.getFullName()
-                        binding.descUserProfile.text = "Карма: " + user.scores.toString()
+                        binding.descUserProfile.text = countScores(user.scores)
                     }
                 }
             }
@@ -70,11 +70,12 @@ class ProfileUserFragment : Fragment() {
         return mutableList to ids
     }
 
-    private fun countScores(scores: List<Score>): Int{
-        var sum = 0
-        scores.forEach {
-            sum += it.value
-        }
-        return sum
+    private fun countScores(list: List<Score>): String {
+        var summary = 0
+        list.forEach { summary += it.value }
+        if (summary > 0)
+            return resources.getString(R.string.scores) + " +" + summary.toString()
+        else
+            return resources.getString(R.string.scores) + " " + summary.toString()
     }
 }
