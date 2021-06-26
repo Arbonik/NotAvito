@@ -58,6 +58,8 @@ class Repository(private val serviceFireStore: ServiceFireStore,
     //user
     fun addScoreUser(id: String, score: Score) = manageUserDataFireStore.addScore(id, score)
     fun getUser(id: String) = manageUserDataFireStore.getUser(id)
+    fun checkClicks(idAuthor: String, idService: String, idSender: String) =
+        manageUserDataFireStore.checkClicks(idAuthor, idService, idSender)
 
     //service
     fun addService(service: Service) = serviceFireStore.addService(service)
@@ -65,10 +67,12 @@ class Repository(private val serviceFireStore: ServiceFireStore,
     fun getAllUserServices(id: String) = serviceFireStore.getAllUserServices(id)
     fun deleteService(service: Service) = serviceFireStore.deleteService(service)
     fun getService(id: String) = serviceFireStore.getService(id)
-    fun getAllOtherUserServices(id: String) = serviceFireStore.getAllOtherUserServices(id)
 
+    fun getAllOtherUserServices(id: String) = serviceFireStore.getAllOtherUserServices(id)
     //news
     fun addNew(new: New) = newsFireStore.addNew(new)
+    fun getTitleNew() = newsFireStore.getTitleNew()
+    fun getBodyNew() = newsFireStore.getBodyNew()
     fun getAllNews() = newsFireStore.getAllNews()
 
     //info

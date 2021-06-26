@@ -31,6 +31,33 @@ class NewsFireStore: NewsFireStoreInterface {
             }
         return mutableLiveData
     }
+
+    fun getTitleNew(): MutableLiveData<Resource<String>> {
+        val mutableLiveData = MutableLiveData<Resource<String>>(Resource.Loading())
+        fireStore.collection(NEWS_TAG)
+            .document("new")
+            .addSnapshotListener { value, error ->
+                if (value != null)
+                    mutableLiveData.postValue(Resource.Success(value.getString("title").toString()))
+                else
+                    mutableLiveData.postValue(Resource.Error(error?.message))
+            }
+        return mutableLiveData
+    }
+
+    fun getBodyNew(): MutableLiveData<Resource<String>> {
+        val mutableLiveData = MutableLiveData<Resource<String>>(Resource.Loading())
+        fireStore.collection(NEWS_TAG)
+            .document("new")
+            .addSnapshotListener { value, error ->
+                if (value != null)
+                    mutableLiveData.postValue(Resource.Success(value.getString("body").toString()))
+                else
+                    mutableLiveData.postValue(Resource.Error(error?.message))
+            }
+        return mutableLiveData
+    }
+
     companion object{
         const val NEWS_TAG = "news"
     }

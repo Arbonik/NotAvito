@@ -3,6 +3,7 @@ package com.castprogramms.karma.ui.service
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +11,8 @@ import android.view.View
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
-import com.castprogramms.karma.MainActivity
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.FragmentServiceBinding
 import com.castprogramms.karma.network.Resource
@@ -26,6 +27,7 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
     private val serviceViewModel : ServiceViewModel by viewModel()
     var id = ""
     var idAuthor = ""
+    val mutableLiveDataIdAuthor = MutableLiveData(idAuthor)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null){
@@ -44,6 +46,11 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
         binding.imageSlider.startAutoCycle()
         profileViewListener(binding)
         likeButtonsListeners(binding)
+        mutableLiveDataIdAuthor.observe(viewLifecycleOwner, {
+            if (it != "")
+                checkClicks(binding)
+        })
+
     }
 
     private fun likeButtonsListeners(binding: FragmentServiceBinding) {
@@ -58,6 +65,10 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
                         createSnackBar(it.data.toString())
+                        binding.likeButtons.bigLike.setColorFilter(Color.BLUE)
+                        binding.likeButtons.bigDislike.setColorFilter(Color.LTGRAY)
+                        binding.likeButtons.smallDislike.setColorFilter(Color.LTGRAY)
+                        binding.likeButtons.smallLike.setColorFilter(Color.LTGRAY)
                     }
                 }
             }
@@ -73,6 +84,10 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
                         createSnackBar(it.data.toString())
+                        binding.likeButtons.bigLike.setColorFilter(Color.LTGRAY)
+                        binding.likeButtons.bigDislike.setColorFilter(Color.LTGRAY)
+                        binding.likeButtons.smallDislike.setColorFilter(Color.LTGRAY)
+                        binding.likeButtons.smallLike.setColorFilter(Color.BLUE)
                     }
                 }
             }
@@ -88,6 +103,10 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
                         createSnackBar(it.data.toString())
+                        binding.likeButtons.bigLike.setColorFilter(Color.LTGRAY)
+                        binding.likeButtons.bigDislike.setColorFilter(Color.BLUE)
+                        binding.likeButtons.smallDislike.setColorFilter(Color.LTGRAY)
+                        binding.likeButtons.smallLike.setColorFilter(Color.LTGRAY)
                     }
                 }
             }
@@ -103,6 +122,10 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
                         createSnackBar(it.data.toString())
+                        binding.likeButtons.bigLike.setColorFilter(Color.LTGRAY)
+                        binding.likeButtons.bigDislike.setColorFilter(Color.LTGRAY)
+                        binding.likeButtons.smallDislike.setColorFilter(Color.BLUE)
+                        binding.likeButtons.smallLike.setColorFilter(Color.LTGRAY)
                     }
                 }
             }
@@ -150,6 +173,7 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                     if (service != null) {
                         serviceViewModel.loadUserData(service.idAuthor)
                         this.idAuthor = service.idAuthor
+                        mutableLiveDataIdAuthor.postValue(service.idAuthor)
                         binding.nameShowServ.text = service.name
                         binding.costShowServ.text = service.cost.toString() + "₽/" + service.unit
                         binding.descShowServ.text = service.desc
@@ -185,7 +209,8 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
         binding.imageSlider.startAutoCycle()
 
         binding.call.setOnClickListener {
-            if (checkSelfPermission(requireContext(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            if (checkSelfPermission(requireContext(), Manifest.permission.CALL_PHONE)
+                == PackageManager.PERMISSION_GRANTED) {
                 serviceViewModel.liveDataUserData.observe(viewLifecycleOwner, {
                     if (it is Resource.Success) {
                         startActivity(Intent(Intent.ACTION_CALL,
@@ -207,5 +232,47 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
 
     private fun createSnackBar(message: String){
         Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun checkClicks(binding: FragmentServiceBinding){
+        serviceViewModel.checkClicks(idAuthor, id, serviceViewModel.getCurrentUser()?.uid.toString())
+            .observe(viewLifecycleOwner, {
+                when(it){
+                    is Resource.Error -> {}
+                    is Resource.Loading ->{}
+                    is Resource.Success -> {
+                        val value = it.data
+                        if (value != null){
+                            when(value){
+                                -20 ->{
+                                    binding.likeButtons.bigLike.setColorFilter(Color.LTGRAY)
+                                    binding.likeButtons.bigDislike.setColorFilter(Color.BLUE)
+                                    binding.likeButtons.smallDislike.setColorFilter(Color.LTGRAY)
+                                    binding.likeButtons.smallLike.setColorFilter(Color.LTGRAY)
+                                }
+                                -10 ->{
+                                    binding.likeButtons.bigLike.setColorFilter(Color.LTGRAY)
+                                    binding.likeButtons.bigDislike.setColorFilter(Color.LTGRAY)
+                                    binding.likeButtons.smallDislike.setColorFilter(Color.BLUE)
+                                    binding.likeButtons.smallLike.setColorFilter(Color.LTGRAY)
+                                }
+                                10 ->{
+
+                                    binding.likeButtons.bigLike.setColorFilter(Color.LTGRAY)
+                                    binding.likeButtons.bigDislike.setColorFilter(Color.LTGRAY)
+                                    binding.likeButtons.smallDislike.setColorFilter(Color.LTGRAY)
+                                    binding.likeButtons.smallLike.setColorFilter(Color.BLUE)
+                                }
+                                20 ->{
+                                    binding.likeButtons.bigLike.setColorFilter(Color.BLUE)
+                                    binding.likeButtons.bigDislike.setColorFilter(Color.LTGRAY)
+                                    binding.likeButtons.smallDislike.setColorFilter(Color.LTGRAY)
+                                    binding.likeButtons.smallLike.setColorFilter(Color.LTGRAY)
+                                }
+                            }
+                        }
+                    }
+                }
+            })
     }
 }

@@ -17,20 +17,21 @@ class NewsFragment: Fragment(R.layout.fragment_news) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentNewsBinding.bind(view)
-        binding.recycler.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = NewsAdapter()
-        binding.recycler.adapter = adapter
-        newsViewModel.getAllNews().observe(viewLifecycleOwner, {
+        newsViewModel.getTitleNew().observe(viewLifecycleOwner, {
             when(it){
-                is Resource.Error -> {
-
-                }
-                is Resource.Loading -> {
-
-                }
+                is Resource.Error -> {}
+                is Resource.Loading -> {}
                 is Resource.Success -> {
-                    if (it.data != null)
-                        adapter.news = it.data.toMutableList()
+                    binding.title.text = it.data
+                }
+            }
+        })
+        newsViewModel.getBodyNew().observe(viewLifecycleOwner, {
+            when(it){
+                is Resource.Error -> {}
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    binding.body.text = it.data
                 }
             }
         })

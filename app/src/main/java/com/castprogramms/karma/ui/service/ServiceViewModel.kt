@@ -24,4 +24,7 @@ class ServiceViewModel(private val repository: Repository): ViewModel() {
     fun addScoreUser(id: String, score: Score) = repository.addScoreUser(id, score)
 
     fun getCurrentUser() = repository.user
+
+    fun checkClicks(idAuthor: String, idService: String, idSender: String) =
+        repository.checkClicks(idAuthor, idService, idSender)
 }

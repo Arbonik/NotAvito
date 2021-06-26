@@ -79,6 +79,23 @@ class ManageUserDataFireStore: ManageUserDataInterface {
         return mutableLiveData
     }
 
+    fun checkClicks(idAuthor: String, idService: String, idSender: String): MutableLiveData<Resource<Int>> {
+        val mutableLiveData = MutableLiveData<Resource<Int>>(Resource.Loading())
+        fireStore.collection(USERS_TAG)
+            .document(idAuthor)
+            .get()
+            .addOnSuccessListener {
+                val user = it.toObject(User::class.java)?.scores?.find {  it.idSender == idSender  && it.idService == idService }
+                if (user != null){
+                    mutableLiveData.postValue(Resource.Success(user.value))
+                }
+                else
+                    mutableLiveData.postValue(Resource.Error(""))
+            }
+        return mutableLiveData
+    }
+
+
     companion object{
         const val USERS_TAG = "users"
     }

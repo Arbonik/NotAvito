@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/news"
         android:name="com.castprogramms.karma.ui.news.NewsFragment"
-        android:label="NewsFragment"
+        android:label="@string/news"
         tools:layout="@layout/fragment_news"/>
     <fragment
         android:id="@+id/myService"
