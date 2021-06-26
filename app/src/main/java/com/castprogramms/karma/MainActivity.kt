@@ -99,10 +99,4 @@ class MainActivity : AppCompatActivity() {
         else
             return resources.getString(R.string.scores) + " " + summary.toString()
     }
-
-    fun request(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), 101)
-        }
-    }
 }
