@@ -124,7 +124,6 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:padding="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -162,14 +161,12 @@
             </RelativeLayout>
 
             <include
-                android:layout_marginEnd="24dp"
                 android:id="@+id/like_buttons"
+                android:layout_marginTop="20dp"
                 layout="@layout/buttons_for_evaluate"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/profileView"
-                app:layout_constraintEnd_toEndOf="@id/profileView"
-                app:layout_constraintTop_toTopOf="@id/profileView"/>
+                app:layout_constraintTop_toBottomOf="@id/profileView" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
@@ -196,20 +193,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/call"
+                style="@style/GreenMaterialButtonFill"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/fio_norm"
+                android:text="@string/call"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/like_buttons"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/call"
-            style="@style/GreenMaterialButtonFill"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/fio_norm"
-            android:text="@string/call"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 </ScrollView>

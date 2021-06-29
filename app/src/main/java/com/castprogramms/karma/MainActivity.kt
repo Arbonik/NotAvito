@@ -4,9 +4,12 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -20,6 +23,7 @@ import com.castprogramms.karma.network.Resource
 import com.castprogramms.karma.tools.Score
 import com.google.android.material.navigation.NavigationView
 import org.koin.android.ext.android.inject
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,12 +52,15 @@ class MainActivity : AppCompatActivity() {
                 when (it) {
                     is Result.Auth -> {
                         repository.getUser(it.data?.uid!!).observe(this) {
-                            when(it){
-                                is Resource.Error -> {}
-                                is Resource.Loading -> {}
+                            when (it) {
+                                is Resource.Error -> {
+                                }
+                                is Resource.Loading -> {
+                                }
                                 is Resource.Success -> {
                                     if (it.data != null) {
-                                        binding.scores.text = countScores(it.data.second.scores)
+                                        binding.scores.text =
+                                            countScores(it.data.second.scores)
                                         binding.nameUser.text = it.data.second.name
                                     }
                                 }
@@ -63,12 +70,15 @@ class MainActivity : AppCompatActivity() {
                     }
                     is Result.Enter -> {
                         repository.getUser(it.data?.uid!!).observe(this) {
-                            when(it){
-                                is Resource.Error -> {}
-                                is Resource.Loading -> {}
+                            when (it) {
+                                is Resource.Error -> {
+                                }
+                                is Resource.Loading -> {
+                                }
                                 is Resource.Success -> {
                                     if (it.data != null) {
-                                        binding.scores.text = countScores(it.data.second.scores)
+                                        binding.scores.text =
+                                            countScores(it.data.second.scores)
                                         binding.nameUser.text = it.data.second.getFullName()
                                     }
                                 }

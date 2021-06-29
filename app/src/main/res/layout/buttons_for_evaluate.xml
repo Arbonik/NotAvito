@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/evaluate_buttons_container"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -12,12 +12,14 @@
         android:layout_margin="@dimen/evaluate_buttons_margin"
         android:rotation="180"
         android:src="@drawable/ic_baseline_thumb_down_24"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/small_like"
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
+        app:layout_constraintHorizontal_bias="0.25"
         android:id="@+id/small_like"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -30,6 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
+        app:layout_constraintHorizontal_bias="0.25"
         android:id="@+id/small_dislike"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -41,6 +44,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
+        app:layout_constraintHorizontal_bias="0.25"
         android:id="@+id/big_dislike"
         android:layout_width="36dp"
         android:layout_height="36dp"
