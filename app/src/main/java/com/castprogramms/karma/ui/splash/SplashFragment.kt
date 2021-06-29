@@ -15,7 +15,7 @@ import com.castprogramms.karma.databinding.SplashFragmentBinding
 
 class SplashFragment: Fragment(R.layout.splash_fragment) {
     val liveDataTimer = MutableLiveData(false)
-    val timer = object : CountDownTimer(2000, 1000){
+    val timer = object : CountDownTimer(1000, 1000){
         override fun onTick(millisUntilFinished: Long) {}
 
         override fun onFinish() {
@@ -28,8 +28,7 @@ class SplashFragment: Fragment(R.layout.splash_fragment) {
         timer.start()
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.show_anim)
         anim.setAnimationListener(object : Animation.AnimationListener{
-            override fun onAnimationRepeat(animation: Animation?) {
-                }
+            override fun onAnimationRepeat(animation: Animation?) {}
 
             override fun onAnimationEnd(animation: Animation?) {
                 binding.goToEnter.visibility = View.VISIBLE
