@@ -15,6 +15,7 @@ import com.castprogramms.karma.databinding.SplashFragmentBinding
 
 class SplashFragment: Fragment(R.layout.splash_fragment) {
     val liveDataTimer = MutableLiveData(false)
+    var isStart = MutableLiveData(false)
     val timer = object : CountDownTimer(1000, 1000){
         override fun onTick(millisUntilFinished: Long) {}
 
@@ -28,6 +29,25 @@ class SplashFragment: Fragment(R.layout.splash_fragment) {
         timer.start()
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.show_anim)
         val animOval = AnimationUtils.loadAnimation(requireContext(), R.anim.left_right_big_oval)
+        animOval.setAnimationListener(object : Animation.AnimationListener{
+            override fun onAnimationStart(animation: Animation?) {}
+
+            override fun onAnimationEnd(animation: Animation?) {
+                isStart.postValue(true)
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {}
+        })
+        isStart.observe(viewLifecycleOwner, {
+            if (it) {
+                liveDataTimer.observe(viewLifecycleOwner, {
+                    if (it && !anim.hasStarted()) {
+                        binding.goToEnter.startAnimation(anim)
+                        binding.goToRegistration.startAnimation(anim)
+                    }
+                })
+            }
+        })
         binding.bigOvvval.startAnimation(animOval)
         binding.bigOvvval.visibility = View.VISIBLE
         anim.setAnimationListener(object : Animation.AnimationListener{
@@ -40,12 +60,6 @@ class SplashFragment: Fragment(R.layout.splash_fragment) {
 
             override fun onAnimationStart(animation: Animation?) {
 
-            }
-        })
-        liveDataTimer.observe(viewLifecycleOwner, {
-            if (it && binding.bigOvvval.visibility != View.VISIBLE) {
-                binding.goToEnter.startAnimation(anim)
-                binding.goToRegistration.startAnimation(anim)
             }
         })
 
