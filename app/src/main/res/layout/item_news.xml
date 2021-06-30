@@ -32,7 +32,6 @@
                 android:orientation="vertical">
                 <com.google.android.material.textview.MaterialTextView
                     android:textSize="16sp"
-                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:id="@+id/name_new"
                     android:layout_width="match_parent"

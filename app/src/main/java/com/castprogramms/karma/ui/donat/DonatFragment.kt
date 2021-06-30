@@ -17,12 +17,12 @@ class DonatFragment: Fragment(R.layout.fragment_donat) {
             when(it){
                 is Resource.Error -> {
                     binding.progressDonat.visibility = View.GONE
-                    binding.donat.setTextColor(Color.RED)
                     binding.donat.text = it.message
                 }
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                    binding.progressDonat.visibility = View.VISIBLE
+                }
                 is Resource.Success -> {
-                    binding.donat.setTextColor(Color.BLACK)
                     binding.progressDonat.visibility = View.GONE
                     binding.donat.text = it.data
                 }

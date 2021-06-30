@@ -16,7 +16,6 @@ class InfoFragment: Fragment(R.layout.fragment_info) {
         viewModel.getInfo().observe(viewLifecycleOwner, {
             when(it){
                 is Resource.Error ->{
-                   binding.info.setTextColor(Color.RED)
                    binding.info.text = it.message
                     binding.progressInfo.visibility = View.INVISIBLE
                 }
@@ -24,7 +23,6 @@ class InfoFragment: Fragment(R.layout.fragment_info) {
                     binding.progressInfo.visibility = View.VISIBLE
                 }
                 is Resource.Success -> {
-                    binding.info.setTextColor(Color.BLACK)
                     binding.info.text = it.data
                     binding.progressInfo.visibility = View.INVISIBLE
                 }

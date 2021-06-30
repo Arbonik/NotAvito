@@ -50,7 +50,6 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
             if (it != "")
                 checkClicks(binding)
         })
-
     }
 
     private fun likeButtonsListeners(binding: FragmentServiceBinding) {
@@ -65,7 +64,7 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                     is Resource.Loading -> {}
                     is Resource.Success -> {
                         createSnackBar(it.data.toString())
-                        binding.likeButtons.bigLike.setColorFilter(Color.BLUE)
+                        binding.likeButtons.bigLike.setColorFilter(Color.rgb(139, 128, 249))
                         binding.likeButtons.bigDislike.setColorFilter(Color.LTGRAY)
                         binding.likeButtons.smallDislike.setColorFilter(Color.LTGRAY)
                         binding.likeButtons.smallLike.setColorFilter(Color.LTGRAY)
@@ -87,7 +86,7 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                         binding.likeButtons.bigLike.setColorFilter(Color.LTGRAY)
                         binding.likeButtons.bigDislike.setColorFilter(Color.LTGRAY)
                         binding.likeButtons.smallDislike.setColorFilter(Color.LTGRAY)
-                        binding.likeButtons.smallLike.setColorFilter(Color.BLUE)
+                        binding.likeButtons.smallLike.setColorFilter(Color.rgb(139, 128, 249))
                     }
                 }
             }
@@ -104,7 +103,7 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                     is Resource.Success -> {
                         createSnackBar(it.data.toString())
                         binding.likeButtons.bigLike.setColorFilter(Color.LTGRAY)
-                        binding.likeButtons.bigDislike.setColorFilter(Color.BLUE)
+                        binding.likeButtons.bigDislike.setColorFilter(Color.rgb(139, 128, 249))
                         binding.likeButtons.smallDislike.setColorFilter(Color.LTGRAY)
                         binding.likeButtons.smallLike.setColorFilter(Color.LTGRAY)
                     }
@@ -124,7 +123,7 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                         createSnackBar(it.data.toString())
                         binding.likeButtons.bigLike.setColorFilter(Color.LTGRAY)
                         binding.likeButtons.bigDislike.setColorFilter(Color.LTGRAY)
-                        binding.likeButtons.smallDislike.setColorFilter(Color.BLUE)
+                        binding.likeButtons.smallDislike.setColorFilter(Color.rgb(139, 128, 249))
                         binding.likeButtons.smallLike.setColorFilter(Color.LTGRAY)
                     }
                 }
@@ -246,14 +245,14 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                             when(value){
                                 -20 ->{
                                     binding.likeButtons.bigLike.setColorFilter(Color.LTGRAY)
-                                    binding.likeButtons.bigDislike.setColorFilter(Color.BLUE)
+                                    binding.likeButtons.bigDislike.setColorFilter(Color.rgb(139, 128, 249))
                                     binding.likeButtons.smallDislike.setColorFilter(Color.LTGRAY)
                                     binding.likeButtons.smallLike.setColorFilter(Color.LTGRAY)
                                 }
                                 -10 ->{
                                     binding.likeButtons.bigLike.setColorFilter(Color.LTGRAY)
                                     binding.likeButtons.bigDislike.setColorFilter(Color.LTGRAY)
-                                    binding.likeButtons.smallDislike.setColorFilter(Color.BLUE)
+                                    binding.likeButtons.smallDislike.setColorFilter(Color.rgb(139, 128, 249))
                                     binding.likeButtons.smallLike.setColorFilter(Color.LTGRAY)
                                 }
                                 10 ->{
@@ -261,10 +260,10 @@ class ServiceFragment : Fragment(R.layout.fragment_service) {
                                     binding.likeButtons.bigLike.setColorFilter(Color.LTGRAY)
                                     binding.likeButtons.bigDislike.setColorFilter(Color.LTGRAY)
                                     binding.likeButtons.smallDislike.setColorFilter(Color.LTGRAY)
-                                    binding.likeButtons.smallLike.setColorFilter(Color.BLUE)
+                                    binding.likeButtons.smallLike.setColorFilter(Color.rgb(139, 128, 249))
                                 }
                                 20 ->{
-                                    binding.likeButtons.bigLike.setColorFilter(Color.BLUE)
+                                    binding.likeButtons.bigLike.setColorFilter(Color.rgb(139, 128, 249))
                                     binding.likeButtons.bigDislike.setColorFilter(Color.LTGRAY)
                                     binding.likeButtons.smallDislike.setColorFilter(Color.LTGRAY)
                                     binding.likeButtons.smallLike.setColorFilter(Color.LTGRAY)
