@@ -63,6 +63,7 @@ class AddServiceFragment: Fragment() {
                             binding.unitService.text.toString(),
                         )
                     )
+                    addServiceViewModel.minusKarma(user.uid, binding.nameService.text.toString())
                     findNavController().navigate(R.id.action_addServiceFragment_to_profileFragment)
                 }
             }
