@@ -28,6 +28,8 @@ class SplashFragment: Fragment(R.layout.splash_fragment) {
         timer.start()
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.show_anim)
         val animOval = AnimationUtils.loadAnimation(requireContext(), R.anim.left_right_big_oval)
+        binding.bigOvvval.startAnimation(animOval)
+        binding.bigOvvval.visibility = View.VISIBLE
         anim.setAnimationListener(object : Animation.AnimationListener{
             override fun onAnimationRepeat(animation: Animation?) {}
 
@@ -37,8 +39,7 @@ class SplashFragment: Fragment(R.layout.splash_fragment) {
             }
 
             override fun onAnimationStart(animation: Animation?) {
-                binding.bigOvvval.startAnimation(animOval)
-                binding.bigOvvval.visibility = View.VISIBLE
+
             }
         })
         liveDataTimer.observe(viewLifecycleOwner, {
