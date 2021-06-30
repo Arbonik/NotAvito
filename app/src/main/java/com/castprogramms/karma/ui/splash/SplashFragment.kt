@@ -42,7 +42,7 @@ class SplashFragment: Fragment(R.layout.splash_fragment) {
             }
         })
         liveDataTimer.observe(viewLifecycleOwner, {
-            if (it) {
+            if (it && binding.bigOvvval.visibility != View.VISIBLE) {
                 binding.goToEnter.startAnimation(anim)
                 binding.goToRegistration.startAnimation(anim)
             }
