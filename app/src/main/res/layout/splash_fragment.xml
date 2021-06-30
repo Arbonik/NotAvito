@@ -1,93 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/fio_norm"
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:id="@+id/constraintLayout"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/fio_norm">
+
+<LinearLayout
+    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_marginBottom="24dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.6">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="24dp"
+    android:orientation="horizontal"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintVertical_bias="0.6">
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/go_to_enter"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_marginStart="24dp"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            android:text="@string/enter"
-            android:background="#00FFFFFF"
-            android:textColor="@color/white"
-            android:visibility="invisible" />
-
-        <com.google.android.material.button.MaterialButton
-            android:visibility="invisible"
-            android:id="@+id/go_to_registration"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            app:shapeAppearance="@style/GreenMaterialButtonFill"
-            android:backgroundTint="@color/white"
-            android:layout_marginEnd="24dp"
-            app:cornerRadius="4dp"
-            android:text="@string/register" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/title_signin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="100dp"
-        android:lineSpacingExtra="0sp"
-        android:text="@string/app_norm_name"
-        android:textAppearance="@style/TextNormalTitle"
-        android:textColor="@color/white"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/go_to_enter"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_weight="1"
+        android:background="#00FFFFFF"
+        android:text="@string/enter"
+        android:textColor="@color/white"
+        android:visibility="invisible" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/go_to_registration"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="24dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/white"
+        android:text="@string/register"
+        android:visibility="invisible"
+        app:cornerRadius="4dp"
+        app:shapeAppearance="@style/GreenMaterialButtonFill" />
+</LinearLayout>
 
-        <ImageView
-            android:id="@+id/big_ovvval"
-            android:layout_width="540dp"
-            android:layout_height="540dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="-205dp"
-            android:layout_marginTop="-47dp"
-            android:background="@drawable/small_oval"
-            android:elevation="2dp" />
+<TextView
+    android:id="@+id/title_signin"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="24dp"
+    android:layout_marginBottom="30dp"
+    android:elevation="100dp"
+    android:lineSpacingExtra="0sp"
+    android:text="@string/app_norm_name"
+    android:textAppearance="@style/TextNormalTitle"
+    android:textColor="@color/white"
+    app:layout_constraintBottom_toBottomOf="@+id/relativeLayout2"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
+<RelativeLayout
+    android:id="@+id/relativeLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="20dp"
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="24dp" />
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="24dp" />
+    <ImageView
+        android:id="@+id/big_ovvval"
+        android:layout_width="540dp"
+        android:layout_height="540dp"
+        android:visibility="invisible"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-205dp"
+        android:layout_marginTop="-47dp"
+        android:background="@drawable/small_oval"
+        android:elevation="2dp" />
+
+</RelativeLayout>
+
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_end="24dp" />
+
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_begin="24dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

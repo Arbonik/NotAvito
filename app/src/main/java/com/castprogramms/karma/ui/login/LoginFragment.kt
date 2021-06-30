@@ -4,13 +4,12 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.lifecycle.Observer
-import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.lifecycle.observe
 import com.castprogramms.karma.MainActivity
@@ -26,9 +25,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentLoginBinding.bind(view)
+        val animOval = AnimationUtils.loadAnimation(requireContext(), R.anim.left_right_big_oval)
         binding.usernameContainer.setHelperTextColor(ColorStateList.valueOf(Color.rgb(139, 128, 249)))
         binding.passwordContainer.setHelperTextColor(ColorStateList.valueOf(Color.rgb(139, 128, 249)))
-
+        binding.smallOval.startAnimation(animOval)
         loginViewModel.loginFormState.observe(viewLifecycleOwner,
             Observer { loginFormState ->
                 if (loginFormState == null) {
