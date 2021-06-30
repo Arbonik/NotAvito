@@ -57,35 +57,33 @@ class MyServicesAdapter(val deleteService:(service: Service) -> Unit): RecyclerV
             binding.time.text = TimeModule.getServiceTime(service.dataTime)
             binding.unit.text = "/" + service.unit
             try {
-                if (service.photo != "")
-                    Glide.with(itemView)
-                        .load(service.photo).fitCenter()
-                        .addListener(object : RequestListener<Drawable> {
-                            override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any?,
-                                target: Target<Drawable>?,
-                                isFirstResource: Boolean,
-                            ): Boolean {
-                                binding.progressBar2.visibility = View.GONE
-                                return true
-                            }
+                Glide.with(itemView)
+                    .load(service.photo).fitCenter()
+                    .addListener(object : RequestListener<Drawable> {
+                        override fun onLoadFailed(
+                            e: GlideException?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            isFirstResource: Boolean,
+                        ): Boolean {
+                            binding.photo.setImageDrawable(itemView.context.resources.getDrawable(R.drawable.no_photo))
+                            binding.progressBar2.visibility = View.GONE
+                            return true
+                        }
 
-                            override fun onResourceReady(
-                                resource: Drawable?,
-                                model: Any?,
-                                target: Target<Drawable>?,
-                                dataSource: DataSource?,
-                                isFirstResource: Boolean,
-                            ): Boolean {
-                                binding.photo.setImageDrawable(resource)
-                                binding.progressBar2.visibility = View.GONE
-                                return true
-                            }
-                        })
-                        .into(binding.photo)
-                else
-                    binding.progressBar2.visibility = View.GONE
+                        override fun onResourceReady(
+                            resource: Drawable?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            dataSource: DataSource?,
+                            isFirstResource: Boolean,
+                        ): Boolean {
+                            binding.photo.setImageDrawable(resource)
+                            binding.progressBar2.visibility = View.GONE
+                            return true
+                        }
+                    })
+                    .into(binding.photo)
             }catch (e: Exception){
                 Log.e("data", e.message.toString())
                 Picasso.get()

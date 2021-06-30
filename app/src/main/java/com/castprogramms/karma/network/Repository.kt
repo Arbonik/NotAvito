@@ -78,4 +78,5 @@ class Repository(private val serviceFireStore: ServiceFireStore,
     //info
     fun getInfo() = settingsFireStore.getInfoAboutCreators()
     fun getInfoAboutDonat() = settingsFireStore.getInfoAboutDonat()
+    fun minusKarma(id: String, idService: String) = manageUserDataFireStore.minusKarma(id, idService)
 }

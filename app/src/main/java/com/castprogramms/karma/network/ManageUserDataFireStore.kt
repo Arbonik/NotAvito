@@ -70,7 +70,7 @@ class ManageUserDataFireStore: ManageUserDataInterface {
                 }
                 else
                     mutableLiveData.postValue(Resource.Error("Вы уже ставили оценку"))
-                if (score.idService != "Регестрация"){
+                if (score.idService != "Регестрация" && score.idSender != id){
                     fireStore.collection(USERS_TAG)
                         .document(score.idSender)
                         .update("scores", FieldValue.arrayUnion(Score(10, score.idService, score.idSender)))
@@ -95,6 +95,18 @@ class ManageUserDataFireStore: ManageUserDataInterface {
         return mutableLiveData
     }
 
+    fun minusKarma(id: String, idService: String) {
+        var minus = 0
+        fireStore.collection(SettingsFireStore.SETTINGS_TAG)
+            .document(SettingsFireStore.INFO_TAG)
+            .get()
+            .addOnSuccessListener {
+                if (it.getLong("minus") != null)
+                    minus = it.getLong("minus")!!.toInt()
+            }.continueWith {
+                addScore(id, Score(-1*minus, idService, id))
+            }
+    }
 
     companion object{
         const val USERS_TAG = "users"
