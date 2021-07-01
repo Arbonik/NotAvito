@@ -67,7 +67,7 @@ class Repository(private val serviceFireStore: ServiceFireStore,
     fun getAllUserServices(id: String) = serviceFireStore.getAllUserServices(id)
     fun deleteService(service: Service) = serviceFireStore.deleteService(service)
     fun getService(id: String) = serviceFireStore.getService(id)
-
+    fun checkHaveNeedKarma(id: String) = serviceFireStore.checkHaveNeedKarma(id)
     fun getAllOtherUserServices(id: String) = serviceFireStore.getAllOtherUserServices(id)
     //news
     fun addNew(new: New) = newsFireStore.addNew(new)

@@ -17,9 +17,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.castprogramms.karma.R
 import com.castprogramms.karma.databinding.FragmentAddServiceBinding
+import com.castprogramms.karma.network.Resource
 import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.tools.time.TimeModule
 import com.castprogramms.karma.ui.login.LoginFormState
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -54,17 +56,32 @@ class AddServiceFragment: Fragment() {
                 Toast.makeText(requireContext(), "Заполните все поля", Toast.LENGTH_SHORT).show()
             } else {
                 if (user != null) {
-                    addServiceViewModel.addService(
-                        Service(
-                            binding.nameService.text.toString(),
-                            binding.costService.text.toString().toInt(),
-                            binding.descService.text.toString(),
-                            uri.toString(), user.uid, TimeModule.now(),
-                            binding.unitService.text.toString(),
-                        )
-                    )
-                    addServiceViewModel.minusKarma(user.uid, binding.nameService.text.toString())
-                    findNavController().navigate(R.id.action_addServiceFragment_to_profileFragment)
+                    addServiceViewModel.checkHaveNeedData(user.uid).observe(viewLifecycleOwner, {
+                        when(it){
+                            is Resource.Error -> {
+                                binding.progressAddService.visibility = View.GONE
+                                Snackbar.make(requireView(), "У вас недостаточно кармы", Snackbar.LENGTH_SHORT).show()
+                            }
+                            is Resource.Loading -> {
+                                binding.progressAddService.visibility = View.VISIBLE
+                            }
+                            is Resource.Success -> {
+                                binding.progressAddService.visibility = View.GONE
+                                addServiceViewModel.addService(
+                                    Service(
+                                        binding.nameService.text.toString(),
+                                        binding.costService.text.toString().toInt(),
+                                        binding.descService.text.toString(),
+                                        uri.toString(), user.uid, TimeModule.now(),
+                                        binding.unitService.text.toString(),
+                                    )
+                                )
+                                addServiceViewModel.minusKarma(user.uid, binding.nameService.text.toString())
+                                Snackbar.make(requireView(), "Заявка успешно создана", Snackbar.LENGTH_SHORT).show()
+                                findNavController().navigate(R.id.action_addServiceFragment_to_profileFragment)
+                            }
+                        }
+                    })
                 }
             }
         }

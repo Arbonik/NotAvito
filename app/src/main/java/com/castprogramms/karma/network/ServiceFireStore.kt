@@ -1,7 +1,9 @@
 package com.castprogramms.karma.network
 
 import androidx.lifecycle.MutableLiveData
+import com.castprogramms.karma.R
 import com.castprogramms.karma.tools.Fields
+import com.castprogramms.karma.tools.Score
 import com.castprogramms.karma.tools.Service
 import com.castprogramms.karma.tools.User
 import com.google.firebase.firestore.FirebaseFirestore
@@ -112,6 +114,43 @@ class ServiceFireStore: ServiceFireStoreInterface {
                 }
             }
         return mutableLiveData
+    }
+
+    fun checkHaveNeedKarma(id: String): MutableLiveData<Resource<Int>> {
+        val mutableLiveData = MutableLiveData<Resource<Int>>(Resource.Loading())
+        var minus = 0
+        var result = 0
+        fireStore.collection(SettingsFireStore.SETTINGS_TAG)
+            .document(SettingsFireStore.INFO_TAG)
+            .get()
+            .addOnSuccessListener {
+                if (it.getLong("minus") != null)
+                    minus = it.getLong("minus")!!.toInt()
+            }
+            .continueWith {
+                var karmaUser = 0
+                fireStore.collection(USERS_TAG)
+                    .document(id)
+                    .get()
+                    .addOnSuccessListener {
+                        val user = it.toObject(User::class.java)
+                        if (user != null) {
+                            karmaUser = countScores(user.scores)
+                            result = karmaUser - minus
+                            if (result >= 0)
+                                mutableLiveData.postValue(Resource.Success(result))
+                            else
+                                mutableLiveData.postValue(Resource.Error(result.toString()))
+                        }
+                    }
+            }
+        return mutableLiveData
+    }
+
+    private fun countScores(list: List<Score>): Int {
+        var summary = 0
+        list.forEach { summary += it.value }
+        return summary
     }
 
     companion object{
